@@ -1,0 +1,19 @@
+// SCSS Variables
+$color-bg: #d1ecf1;
+$color-border: #b8daff;
+$color-border-left: #3498db;
+
+$padding: 1rem 1.5rem;
+$border-radius: 8px;
+$margin: 1.5rem 0;
+$border-left-width: 4px;
+
+// Direct styles instead of single-use mixin
+.infoBox {
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-left: $border-left-width solid $color-border-left;
+  padding: $padding;
+  border-radius: $border-radius;
+  margin: $margin;
+}

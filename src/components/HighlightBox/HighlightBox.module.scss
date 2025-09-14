@@ -1,0 +1,21 @@
+.highlightBox {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.highlightBox h3 {
+  margin-top: 0;
+  color: white !important;
+}
+
+.highlightBox *,
+.highlightBox p,
+.highlightBox span,
+.highlightBox strong,
+.highlightBox em {
+  color: white !important;
+}

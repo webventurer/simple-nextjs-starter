@@ -1,0 +1,14 @@
+.section {
+
+  padding: 1rem;
+
+  &.strong {
+    background-color: #f3f5ef;
+    color: #5b6270;
+  }
+
+  &.subtle {
+    background-color: #eef;
+  }
+
+}
