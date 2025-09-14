@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: typescript-check
+        name: TypeScript Type Check
+        entry: pnpm run type:check
+        language: system
+        files: '\.(ts|tsx)$'
+        pass_filenames: false
+        always_run: true

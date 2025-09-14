@@ -1,17 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Getting started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -20,7 +14,27 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+### Pre-commit hooks
+
+This project uses [pre-commit](https://pre-commit.com/) to automatically run TypeScript type checking before commits.
+
+To set up pre-commit hooks (one-time setup for new developers):
+
+```bash
+# Install pre-commit (if not already installed)
+brew install pre-commit
+
+# Install the hooks
+pre-commit install
+```
+
+The hooks will now run automatically on every commit. To run them manually:
+
+```bash
+pre-commit run --all-files
+```
+
+## Learn more
 
 To learn more about Next.js, take a look at the following resources:
 
