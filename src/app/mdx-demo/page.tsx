@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { MDXProvider } from '@mdx-js/react';
-import contentStyles from './page.module.scss';
-import MDXContent from './content.mdx';
+import { MDXProvider } from "@mdx-js/react";
+import MDXContent from "./content.mdx";
+import contentStyles from "./page.module.scss";
 
 // Custom components for MDX
 const components = {

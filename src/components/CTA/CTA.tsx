@@ -1,5 +1,5 @@
-import styles from './CTA.module.scss';
-import Link from 'next/link';
+import Link from "next/link";
+import styles from "./CTA.module.scss";
 
 interface CTAProps {
   title: string;
@@ -8,15 +8,18 @@ interface CTAProps {
   buttonHref: string;
 }
 
-export default function CTA({ title, description, buttonText, buttonHref }: CTAProps) {
+export default function CTA({
+  title,
+  description,
+  buttonText,
+  buttonHref,
+}: CTAProps) {
   return (
     <section className={styles.container}>
       <h2>{title}</h2>
       <p>{description}</p>
       <nav className={styles.buttons}>
-        <Link href={buttonHref}>
-          {buttonText}
-        </Link>
+        <Link href={buttonHref}>{buttonText}</Link>
       </nav>
     </section>
   );

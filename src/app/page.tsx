@@ -1,4 +1,4 @@
-import styles from './page.module.scss';
+import styles from "./page.module.scss";
 
 export default function Home() {
   return (
@@ -6,9 +6,7 @@ export default function Home() {
       <main className={styles.content}>
         <header className={styles.header}>
           <h1>Landing Starter - Next.js</h1>
-          <p>
-            A clean Next.js starter for landing pages with MDX support
-          </p>
+          <p>A clean Next.js starter for landing pages with MDX support</p>
         </header>
 
         <section className={styles.sections}>
@@ -27,7 +25,8 @@ export default function Home() {
           <div className={styles.demoCard}>
             <h2>Demo</h2>
             <p>
-              Check out our MDX demo page to see GitHub Flavored Markdown features in action.
+              Check out our MDX demo page to see GitHub Flavored Markdown
+              features in action.
             </p>
             <a href="/mdx-demo" className={styles.demoLink}>
               View MDX Demo →

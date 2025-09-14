@@ -18,7 +18,10 @@ export default function MDXDemoLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${inter.variable} ${jetbrainsMono.variable}`} style={{ fontFamily: 'var(--font-inter)' }}>
+    <div
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      style={{ fontFamily: "var(--font-inter)" }}
+    >
       {children}
     </div>
   );
