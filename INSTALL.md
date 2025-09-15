@@ -20,7 +20,15 @@ Follow these steps to recreate this setup from scratch and understand how it all
 ### 1. Create Next.js project
 
 ```bash
-npx create-next-app@latest my-landing --typescript --biome --tailwind --app --src-dir --import-alias "@/*" --use-pnpm --turbopack
+npx create-next-app@latest my-landing \
+  --typescript \
+  --biome \
+  --tailwind \
+  --app \
+  --src-dir \
+  --import-alias "@/*" \
+  --use-pnpm \
+  --turbopack
 ```
 
 **Breaking down the command:**
@@ -225,7 +233,12 @@ Tailwind provides the foundation for fast, consistent styling while more complex
 ### 2. Add MDX functionality
 
 ```bash
-pnpm add @next/mdx @mdx-js/loader @mdx-js/react @types/mdx remark-gfm
+pnpm add \
+  @next/mdx \
+  @mdx-js/loader \
+  @mdx-js/react \
+  @types/mdx \
+  remark-gfm
 ```
 
 **Package purposes:**
@@ -267,6 +280,81 @@ pnpm add sass
 ```
 
 This enables `.scss` files and CSS Modules with SCSS preprocessing.
+
+**🎨 What is SCSS?**
+
+SCSS (Sassy CSS) is a CSS preprocessor that extends regular CSS with powerful features:
+
+- **Variables** - Store colors, fonts, and sizes for reuse: `$primary-color: #3b82f6;`
+- **Nesting** - Write nested selectors that mirror your HTML structure
+- **Mixins** - Reusable chunks of CSS that can accept parameters
+- **Functions** - Built-in functions for color manipulation, math operations
+- **Imports** - Split your CSS into multiple files and combine them
+
+**🔧 SCSS vs regular CSS:**
+
+```scss
+// SCSS - with variables and nesting
+$primary-color: #3b82f6;
+$border-radius: 0.5rem;
+
+.card {
+  background: white;
+  border-radius: $border-radius;
+
+  .header {
+    color: $primary-color;
+    font-weight: 600;
+
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
+}
+```
+
+```css
+/* Compiled CSS output */
+.card {
+  background: white;
+  border-radius: 0.5rem;
+}
+
+.card .header {
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+.card .header:hover {
+  color: #2563eb;
+}
+```
+
+**🎯 Why add SCSS to this starter?**
+
+- **Complements Tailwind** - Use SCSS for complex component styles, Tailwind for utilities
+- **CSS Modules compatibility** - Works perfectly with `.module.scss` files for scoped styling
+- **Design system** - Variables and mixins help maintain consistent styling
+- **Better organization** - Nest related styles and use imports to organize code
+- **Advanced features** - Color functions, calculations, and logic not available in plain CSS
+
+**📋 How it fits the architecture:**
+
+```
+src/
+├── styles/
+│   ├── typography.css      # Global typography
+│   └── layout.css          # Global layout patterns
+├── components/
+│   └── Button/
+│       ├── Button.tsx
+│       └── Button.module.scss  # SCSS with variables and nesting
+└── app/
+    ├── globals.css         # Tailwind imports
+    └── page.module.scss    # Page-specific SCSS styles
+```
+
+SCSS gives you the power of a preprocessor while maintaining the scoped styling benefits of CSS Modules.
 
 ### 5. Setup shadcn/ui
 
@@ -349,7 +437,7 @@ Create `.vscode/css_custom_data.json`:
 - Unknown CSS property warnings
 - Missing intellisense for Tailwind classes
 
-### 7. Add workspace integration (optional)
+### 7. Add code-fu persistent memory for standard (optional)
 
 If you have the code-fu documentation workspace, add it for persistent AI memory and standards:
 
