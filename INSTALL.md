@@ -1,14 +1,14 @@
-# Installation guide: Landing page starter
+# Installation guide: Simple Next.js starter
 
-A comprehensive guide to setting up this Next.js landing page starter from scratch with MDX, shadcn/ui, and modern tooling.
+A comprehensive guide to setting up this clean Next.js starter from scratch with MDX, SCSS, and modern tooling.
 
 ## Quick setup
 
 If you want to clone this repository directly:
 
 ```bash
-git clone https://github.com/webventurer/landing-starter-nextjs.git
-cd landing-starter-nextjs
+git clone https://github.com/webventurer/simple-nextjs-starter.git
+cd simple-nextjs-starter
 pnpm install
 pnpm dev
 ```

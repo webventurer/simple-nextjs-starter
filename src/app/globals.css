@@ -1,16 +1,28 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "../styles/themes.css";
-@import "../styles/typography.css";
+/* Global Styles - Import order matters */
 @import "../styles/layout.css";
+@import "../styles/typography.css";
 
-@custom-variant dark (&:is(.dark *));
+/* CSS Custom Properties for theming */
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #0f0f23;
+  --color-primary: #0070f3;
+  --color-secondary: #f4f4f5;
+  --color-muted: #71717a;
+  --radius: 0.5rem;
+}
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+.dark {
+  --color-background: #0f0f23;
+  --color-foreground: #ffffff;
+  --color-primary: #3b82f6;
+  --color-secondary: #27272a;
+  --color-muted: #a1a1aa;
+}
+
+/* Global base styles */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
