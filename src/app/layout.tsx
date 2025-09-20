@@ -24,8 +24,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Wordtracker",
-  description: "Wordtracker",
+  title: "Simple Next.js Starter",
+  description: "A simple Next.js starter with dynamic MDX routing",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",

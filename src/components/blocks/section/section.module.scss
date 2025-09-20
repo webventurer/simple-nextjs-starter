@@ -1,56 +1,18 @@
-// Section component styling - CSS Modules with SCSS
-$color-primary: #3b82f6;
-$color-secondary: #1e293b;
-$color-text: #1e293b;
-$color-text-light: #64748b;
-$color-white: white;
-$color-bg-gray: #f9fafb;
-
-$spacing-lg: 1rem;
-$spacing-xl: 1.5rem;
-$spacing-xxl: 2rem;
-$spacing-4xl: 4rem;
-$spacing-5xl: 5rem;
-
 .section {
-    padding: $spacing-5xl 0;
-    background: $color-white;
+    padding: 1rem;
 
-    &.gray {
-        background: $color-bg-gray;
-    }
-}
-
-.sectionContent {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 $spacing-lg;
-
-    @media (min-width: 640px) {
-        padding: 0 $spacing-xl;
+    &.strong {
+        background-color: #5b6270;
+        color: #f3f5ef;
     }
 
-    @media (min-width: 1024px) {
-        padding: 0 $spacing-xxl;
+    &.subtle {
+        background-color: #f3f5ef;
+        color: #5b6270;
     }
-}
 
-.sectionHeader {
-    text-align: center;
-    margin-bottom: $spacing-4xl;
-}
-
-.sectionTitle {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 1rem;
-}
-
-.sectionSubtitle {
-    font-size: 1.25rem;
-    color: #64748b;
-    max-width: 768px;
-    margin: 0 auto;
-    line-height: 1.6;
+    >.content {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
 }

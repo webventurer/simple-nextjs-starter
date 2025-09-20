@@ -10,8 +10,8 @@ export interface SimpleHeaderProps {
 }
 
 export function SimpleHeader({
-  title = "MDX Test Suite",
-  logoText = "T",
+  title = "Simple Starter",
+  logoText = "S",
   navLinks = [
     { text: "About", href: "/about" },
     { text: "Contact", href: "/contact" },

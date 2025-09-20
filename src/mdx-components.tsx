@@ -1,11 +1,15 @@
 import type { MDXComponents } from "mdx/types";
 
-import { Section } from "@/components/blocks/section/section";
-import { SimpleHeader } from "@/components/blocks/simple-header/simple-header";
+import { FeatureCard } from "@/components/blocks/feature-card";
+import { FeaturesGrid } from "@/components/blocks/features-grid";
+import { Section } from "@/components/blocks/section";
+import { SimpleHeader } from "@/components/blocks/simple-header";
 
 const components: MDXComponents = {
-  SimpleHeader,
   Section,
+  FeaturesGrid,
+  FeatureCard,
+  SimpleHeader,
 };
 
 export function useMDXComponents(): MDXComponents {

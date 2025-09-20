@@ -1,0 +1,25 @@
+// SCSS Variables
+$grid-gap-default: 2rem;
+$grid-gap-compact: 1rem;
+$grid-gap-highlighted: 2.5rem;
+
+$grid-min-width-default: 300px;
+$grid-min-width-compact: 250px;
+
+$grid-margin: 3rem 0;
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($grid-min-width-default, 1fr));
+    gap: $grid-gap-default;
+    margin: $grid-margin;
+}
+
+.compact {
+    gap: $grid-gap-compact;
+    grid-template-columns: repeat(auto-fit, minmax($grid-min-width-compact, 1fr));
+}
+
+.highlighted {
+    gap: $grid-gap-highlighted;
+}
