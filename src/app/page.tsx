@@ -13,12 +13,12 @@ export default function Home() {
           <div className={styles.card}>
             <h2>Features</h2>
             <ul>
-              <li>• Next.js 15 with App Router</li>
-              <li>• Tailwind CSS 4 for styling</li>
-              <li>• MDX support with GitHub Flavored Markdown</li>
-              <li>• SCSS preprocessing capabilities</li>
-              <li>• TypeScript configuration</li>
-              <li>• Layout + Content CSS architecture pattern</li>
+              <li>Next.js 15 with App Router</li>
+              <li>SCSS modules for styling</li>
+              <li>MDX support with GitHub Flavored Markdown</li>
+              <li>SCSS preprocessing capabilities</li>
+              <li>TypeScript configuration</li>
+              <li>Layout + Content CSS architecture pattern</li>
             </ul>
           </div>
 
