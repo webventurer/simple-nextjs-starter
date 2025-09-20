@@ -122,7 +122,7 @@ This starter uses the `--turbopack` flag to enable Next.js's new Rust-based bund
 
 **🎯 When to use Turbopack:**
 
-- ✅ **Standard Next.js features** (App Router, CSS Modules, next/image)
+- ✅ **Standard Next.js features** (App Router, SCSS Modules, next/image)
 - ✅ **Modern tooling** (TypeScript, SCSS, MDX)
 - ✅ **Fast development feedback** loops
 - ✅ **Landing pages and marketing sites**
@@ -158,7 +158,7 @@ For this landing page starter with standard Next.js features (MDX, SCSS, TypeScr
 pnpm add sass
 ```
 
-This enables `.scss` files and CSS Modules with SCSS preprocessing.
+This enables `.scss` files and SCSS Modules with SCSS preprocessing.
 
 **🎨 What is SCSS?**
 
@@ -481,7 +481,7 @@ This starter treats styling as component-scoped with shared design tokens. Each 
 
 - Ensure `sass` package is installed
 - Check file extensions in `next.config.ts`
-- Verify SCSS files use `.module.scss` for CSS Modules
+- Verify SCSS files use `.module.scss` for SCSS Modules
 
 **CSS custom properties not working?**
 
