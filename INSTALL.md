@@ -60,6 +60,16 @@ You can write clean absolute imports:
 import Button from "@/components/Button";
 ```
 
+### Install Biome globally (Required)
+
+For optimal VS Code integration and consistent formatting across projects, install Biome globally:
+
+```bash
+brew install biome
+```
+
+This ensures VS Code can find the Biome executable and provides consistent formatting behavior across all your TypeScript/JavaScript projects.
+
 ### Why Biome over ESLint?
 
 This starter uses Biome instead of the traditional ESLint + Prettier combination for several advantages:
@@ -358,19 +368,48 @@ const classes = clsx(
 );
 ```
 
-### 6. Configure VS Code (Optional)
+### 6. Configure VS Code (Required for Biome)
 
-Create `.vscode/settings.json`:
+#### Install Biome VS Code Extension
+
+1. Open Extensions in VS Code (`Cmd+Shift+X`)
+2. Search for "Biome"
+3. Install "Biome" by Biomejs (official extension)
+
+#### Configure VS Code Settings
+
+Create `.vscode/settings.json` or add to your global VS Code settings to ensure Biome works correctly with TypeScript/React and doesn't conflict with other formatters like Ruff (Python):
 
 ```json
 {
-  "css.validate": false,
-  "scss.validate": false,
-  "less.validate": false
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.codeActionsOnSave": {
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    }
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.codeActionsOnSave": {
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    }
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.codeActionsOnSave": {
+      "quickfix.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+    }
+  }
 }
 ```
 
-This prevents CSS validation errors for custom properties and modern CSS features.
+**Important:** This configuration ensures:
+- ✅ Biome handles TypeScript, TypeScript React, and JSON files exclusively
+- ✅ No conflicts with other formatters (e.g., Ruff for Python)
+- ✅ Automatic import organization and code fixing on save
 
 ### 7. Project structure
 
