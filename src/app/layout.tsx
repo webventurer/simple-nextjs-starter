@@ -1,20 +1,35 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Inter as FontSans, Lato, Nunito } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import "./globals.css";
+import "../styles/layout.css";
+import "../styles/typography.css";
+import { SimpleHeader } from "@/components/blocks/simple-header";
+
+const fontSans = FontSans({
   subsets: ["latin"],
+  variable: "--font-sans",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunito = Nunito({
   subsets: ["latin"],
+  variable: "--font-nunito",
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  variable: "--font-lato",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Starter",
-  description: "A clean, modern starter template for Next.js projects",
+  title: "Wordtracker",
+  description: "Wordtracker",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -23,11 +38,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={cn(fontSans.variable, nunito.variable, lato.variable)}
+    >
+      <body>
+        <SimpleHeader />
         {children}
+        {process.env.NODE_ENV === "development" && (
+          <script src="/dev-auto-refresh.js" />
+        )}
       </body>
     </html>
   );

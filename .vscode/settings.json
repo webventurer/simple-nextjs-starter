@@ -1,13 +1,13 @@
 {
-    "css.validate": true,
-    "scss.validate": true,
-    "less.validate": false,
-    "files.associations": {
-        "*.css": "css",
-        "*.scss": "scss"
-    },
-    "emmet.includeLanguages": {
-        "typescript": "html",
-        "typescriptreact": "html"
-    }
+  "css.validate": true,
+  "scss.validate": true,
+  "less.validate": false,
+  "files.associations": {
+    "*.css": "css",
+    "*.scss": "scss"
+  },
+  "emmet.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  }
 }
