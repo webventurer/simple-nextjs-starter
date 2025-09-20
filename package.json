@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
+    "fix": "biome check --write",
     "type:check": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
