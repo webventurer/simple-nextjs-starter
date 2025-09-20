@@ -83,13 +83,70 @@ import { SimpleHeader } from "@/components/SimpleHeader";
 
 ```tsx
 export interface SimpleHeaderProps {
+  children: React.ReactNode;
+  variant?: "compact" | "transparent";
+  className?: string;
+}
+
+export function SimpleHeader({ children, variant, className }: SimpleHeaderProps) {
+  // component logic
+}
+```
+
+### Prefer React.ReactNode Children Over Complex Props
+
+✅ **Use children for flexible content composition**
+
+```tsx
+// GOOD: Flexible, reusable
+export function SimpleHeader({ children, variant }: SimpleHeaderProps) {
+  return (
+    <header className={clsx(styles.header, variant && styles[variant])}>
+      <div className={styles.headerContent}>
+        <div className={styles.headerInner}>{children}</div>
+      </div>
+    </header>
+  );
+}
+
+// Usage allows any content structure
+<SimpleHeader>
+  <div className={headerStyles.logo}>
+    <div className={headerStyles.logoIcon}>
+      <span className={headerStyles.logoText}>S</span>
+    </div>
+    <h1 className={headerStyles.logoText}>Simple Starter</h1>
+  </div>
+  <nav className={headerStyles.nav}>
+    <a href="/about" className={headerStyles.navLink}>About</a>
+  </nav>
+</SimpleHeader>
+```
+
+❌ **Avoid complex prop-based content configuration**
+
+```tsx
+// AVOID: Rigid, complex interface
+export interface RigidHeaderProps {
   title?: string;
   logoText?: string;
+  navLinks?: { text: string; href: string }[];
   variant?: "compact" | "transparent";
 }
 
-export function SimpleHeader(props: SimpleHeaderProps) {
-  // component logic
+export function RigidHeader({ title, logoText, navLinks, variant }: RigidHeaderProps) {
+  // Hard-coded structure limits flexibility
+  return (
+    <header>
+      <div className={styles.logo}>
+        <span>{logoText}</span>
+        <h1>{title}</h1>
+      </div>
+      <nav>
+        {navLinks?.map(link => <a href={link.href}>{link.text}</a>)}
+      </nav>
+    </header>
+  );
 }
 ```
 
@@ -111,7 +168,7 @@ import type { SimpleHeaderProps } from "./SimpleHeader";
 
 ```tsx
 // What React.ReactNode includes:
-type ReactNode = 
+type ReactNode =
   | ReactElement          // JSX elements: <div>Hello</div>
   | string                // Plain text: "Hello world"
   | number                // Numbers: 42
@@ -189,7 +246,7 @@ export function Component({ variant, className }: Props) {
     variant && styles[variant],
     className
   );
-  
+
   return <div className={classes}>...</div>;
 }
 ```
@@ -371,8 +428,302 @@ export function Article({ children }: Props) {
 - **Maintainability**: Consistent naming makes code easier to navigate and understand
 - **Refactoring**: Standard patterns make automated refactoring more reliable
 
+## Next.js Specific Patterns
+
+### Font Loading with Google Fonts
+✅ **Use Next.js font optimization**
+
+```tsx
+// app/layout.tsx
+import { Inter as FontSans, Lato, Nunito } from "next/font/google";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  variable: "--font-lato",
+  weight: "400",
+});
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html className={cn(fontSans.variable, nunito.variable, lato.variable)}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### Dynamic MDX Routing
+✅ **Use dynamic segments for content routing**
+
+```tsx
+// app/[...path]/page.tsx
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ path: string[] }>;
+}) {
+  const { path: parts } = await params;
+  const filePath = parts.length ? parts.join("/") : "home";
+  const { default: Page } = await import(`@/content/${filePath}.mdx`);
+  return <Page />;
+}
+
+export async function generateStaticParams() {
+  const contentDir = path.join(process.cwd(), "content");
+  // Static generation logic for all MDX files
+  return walk(contentDir);
+}
+
+export const dynamicParams = false; // Only allow pre-generated routes
+```
+
+### MDX Component Registration
+✅ **Register components for MDX usage**
+
+```tsx
+// mdx-components.tsx
+import type { MDXComponents } from "mdx/types";
+import { Section } from "@/components/Section";
+import { FeatureCard } from "@/components/FeatureCard";
+import { FeaturesGrid } from "@/components/FeaturesGrid";
+
+const components: MDXComponents = {
+  Section,
+  FeatureCard,
+  FeaturesGrid,
+};
+
+export function useMDXComponents(): MDXComponents {
+  return components;
+}
+```
+
+### Environment-Conditional Rendering
+✅ **Use environment checks for dev-only features**
+
+```tsx
+// app/layout.tsx
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html>
+      <body>
+        {children}
+        {process.env.NODE_ENV === "development" && (
+          <script src="/dev-auto-refresh.js" />
+        )}
+      </body>
+    </html>
+  );
+}
+```
+
+## Advanced Component Patterns
+
+### Utility Functions for Complex Logic
+✅ **Extract complex logic into utility functions**
+
+```tsx
+// components/utils.ts
+import { Children, type ReactElement, type ReactNode } from "react";
+
+type Sequence = (keyof JSX.IntrinsicElements)[];
+
+export const groupBySequence = (children: ReactNode, seq: Sequence) => {
+  const elements = Children.toArray(children) as ReactElement[];
+  const groups: ReactElement[][] = [];
+  
+  for (let i = 0; i < elements.length; i += seq.length) {
+    const slice = elements.slice(i, i + seq.length);
+    // Validation logic for expected element types
+    groups.push(slice);
+  }
+  
+  return groups;
+};
+
+// Usage in components
+export function FeaturesGrid({ children }: { children: ReactNode }) {
+  const cards = groupBySequence(children, ["h3", "p"]);
+  
+  return (
+    <section className={styles.featuresGrid}>
+      {cards.map((cardChildren, idx) => (
+        <FeatureCard key={idx}>{cardChildren}</FeatureCard>
+      ))}
+    </section>
+  );
+}
+```
+
+### Error Handling in Components
+✅ **Add proper error handling for edge cases**
+
+```tsx
+const matchesTag = (el: ReactElement, tag: keyof JSX.IntrinsicElements) => {
+  // Robust type checking for elements
+  return (typeof el.type === "string" && el.type === tag) ||
+    (typeof el.type === "function" &&
+      "displayName" in el.type &&
+      el.type.displayName === tag);
+};
+
+export const groupBySequence = (children: ReactNode, seq: Sequence) => {
+  // ... grouping logic
+  
+  seq.forEach((tag, j) => {
+    if (!matchesTag(slice[j], tag)) {
+      const found = typeof slice[j].type === "string"
+        ? slice[j].type
+        : slice[j].type.displayName || slice[j].type.name || "unknown";
+      
+      throw new Error(
+        `Expected <${tag}> at position ${i + j}, found <${found}>`
+      );
+    }
+  });
+};
+```
+
+### Component Display Names for Debugging
+✅ **Set display names for better debugging**
+
+```tsx
+// components/utils.ts
+export const withDisplayNames = (
+  components: Record<string, React.ComponentType<Record<string, unknown>>>
+) => {
+  Object.keys(components).forEach((key) => {
+    components[key].displayName = key;
+  });
+  return components;
+};
+
+// Usage
+const components = withDisplayNames({
+  Section,
+  FeatureCard,
+  FeaturesGrid,
+});
+```
+
+## Metadata and SEO
+
+### Structured Metadata Export
+✅ **Define metadata at the layout level**
+
+```tsx
+// app/layout.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Simple Next.js Starter",
+  description: "A simple Next.js starter with dynamic MDX routing",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+};
+```
+
+### Readonly Props for Layouts
+✅ **Use Readonly for layout props**
+
+```tsx
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  // Layout implementation
+}
+```
+
+## Development Tools Integration
+
+### CSS Utility Functions
+✅ **Create utility functions for class name management**
+
+```tsx
+// lib/utils.ts
+import { type ClassValue, clsx } from "clsx";
+
+export function cn(...inputs: ClassValue[]) {
+  return clsx(inputs);
+}
+
+export function classNames(
+  ...classes: (string | undefined | null | false)[]
+): string {
+  return classes.filter(Boolean).join(" ");
+}
+```
+
+### Build Tool Configuration
+✅ **Configure proper linting and formatting**
+
+```json
+// package.json
+{
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "fix": "biome check --write",
+    "type:check": "pnpm exec tsc --noEmit"
+  }
+}
+```
+
+## Project Organization Best Practices
+
+### Content Directory Structure
+✅ **Organize MDX content logically**
+
+```
+content/
+├── home.mdx          # Default route
+├── about.mdx         # Static pages
+├── comparison.mdx    # Feature pages
+└── subdirectory/     # Nested routes
+    └── page.mdx
+```
+
+### Component Co-location
+✅ **Keep related files together**
+
+```
+components/
+├── Section/
+│   ├── Section.tsx           # Component logic
+│   ├── Section.module.scss   # Component styles
+│   └── index.ts             # Clean exports
+└── utils.ts                 # Shared utilities
+```
+
+## Why These Patterns Matter
+
+- **Performance**: Next.js patterns optimize loading and rendering
+- **SEO**: Proper metadata and static generation improve search ranking
+- **Developer Experience**: Organized imports and utilities speed development
+- **Type Safety**: TypeScript patterns catch errors at build time
+- **Maintainability**: Consistent structure makes code easier to modify
+- **Scalability**: Patterns work well as the project grows
+
 ## Resources
 
 - [React Documentation](https://react.dev/)
 - [Next.js Best Practices](https://nextjs.org/docs/getting-started/react-essentials)
 - [TypeScript with React](https://www.typescriptlang.org/docs/handbook/react.html)
+- [MDX Documentation](https://mdxjs.com/)
+- [Biome Linter Configuration](https://biomejs.dev/)
