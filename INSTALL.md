@@ -1,14 +1,14 @@
-# Installation guide: Landing page starter
+# Installation guide: Simple Next.js starter
 
-A comprehensive guide to setting up this Next.js landing page starter from scratch with MDX, SCSS modules, and modern tooling.
+A comprehensive guide to setting up this clean Next.js starter from scratch with MDX, SCSS modules, and modern tooling.
 
 ## Quick setup
 
 If you want to clone this repository directly:
 
 ```bash
-git clone https://github.com/webventurer/landing-starter-nextjs.git
-cd landing-starter-nextjs
+git clone https://github.com/webventurer/simple-nextjs-starter.git
+cd simple-nextjs-starter
 pnpm install
 pnpm dev
 ```
@@ -100,6 +100,8 @@ pnpm lint --write  # Fix both formatting and linting issues
 - `pnpm lint` (Biome) → Validates code style and quality
 - Both are needed: TypeScript catches logical errors, Biome catches style issues
 
+Choose Biome if you want faster tooling and minimal configuration. Choose ESLint if you need specific plugins or have existing ESLint workflows.
+
 ### Why Turbopack?
 
 This starter uses the `--turbopack` flag to enable Next.js's new Rust-based bundler instead of the traditional Webpack.
@@ -124,6 +126,29 @@ This starter uses the `--turbopack` flag to enable Next.js's new Rust-based bund
 - ✅ **Modern tooling** (TypeScript, SCSS, MDX)
 - ✅ **Fast development feedback** loops
 - ✅ **Landing pages and marketing sites**
+
+**⚠️ When to stick with Webpack:**
+
+- ❌ **Custom Webpack loaders/plugins** that don't have Turbopack equivalents
+- ❌ **Legacy build configurations** with complex plugin dependencies
+- ❌ **Production builds** requiring exact Webpack behavior (though Turbopack support is expanding)
+
+**📋 Command comparison:**
+
+```bash
+# With Turbopack (faster)
+pnpm dev  # Uses Turbopack by default with --turbopack flag
+
+# With Webpack (traditional)
+pnpm dev --webpack  # Force Webpack if needed
+```
+
+**🔄 Part of the Rust ecosystem:**
+Similar to Biome replacing ESLint+Prettier, Turbopack is part of Vercel's Rust-based toolchain:
+
+- **Turborepo** - Monorepo management
+- **Turbopack** - Fast bundling
+- **SWC** - Fast TypeScript/JavaScript compilation
 
 For this landing page starter with standard Next.js features (MDX, SCSS, TypeScript), Turbopack provides significantly faster development without any downsides.
 
@@ -406,6 +431,14 @@ With `remark-gfm`, your MDX files support:
 Visit https://example.com (automatically becomes a link)
 ```
 
+**Footnotes:**
+
+```markdown
+Here's a sentence with a footnote[^1].
+
+[^1]: This is the footnote content.
+```
+
 ## Development experience
 
 - **Turbopack** - Faster development builds
@@ -427,6 +460,8 @@ Visit https://example.com (automatically becomes a link)
 ## Component philosophy
 
 This starter treats styling as component-scoped with shared design tokens. Each component owns its styles while participating in a consistent design system through CSS custom properties.
+
+**Tip:** All `create-next-app` flags are just shortcuts. If you miss them during setup, you can add the equivalent functionality manually later.
 
 ## Styling architecture
 
