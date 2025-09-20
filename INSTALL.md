@@ -1,6 +1,6 @@
 # Installation guide: Simple Next.js starter
 
-A comprehensive guide to setting up this clean Next.js starter from scratch with MDX, SCSS, and modern tooling.
+A comprehensive guide to setting up this clean Next.js starter from scratch with MDX, SCSS modules, and modern tooling.
 
 ## Quick setup
 
@@ -23,7 +23,6 @@ Follow these steps to recreate this setup from scratch and understand how it all
 npx create-next-app@latest my-landing \
   --typescript \
   --biome \
-  --tailwind \
   --app \
   --src-dir \
   --import-alias "@/*" \
@@ -40,8 +39,7 @@ npx create-next-app@latest my-landing \
 **Flags explained:**
 
 - `--typescript` → Sets up TypeScript out of the box (instead of plain JavaScript)
-- `--biome` → Linting, formatting, bundling tool that replaces ESLint + Prettier (like ruff)
-- `--tailwind` → Installs Tailwind CSS for styling
+- `--biome` → Linting, formatting, bundling tool that replaces ESLint + Prettier
 - `--app` → Uses the App Router (new file-based routing in `app/` instead of `pages/`)
 - `--src-dir` → Puts all code under a `/src` folder for cleaner repo structure
 - `--import-alias "@/*"` → Sets up import aliases for cleaner imports
@@ -125,7 +123,7 @@ This starter uses the `--turbopack` flag to enable Next.js's new Rust-based bund
 **🎯 When to use Turbopack:**
 
 - ✅ **Standard Next.js features** (App Router, CSS Modules, next/image)
-- ✅ **Modern tooling** (TypeScript, Tailwind, MDX)
+- ✅ **Modern tooling** (TypeScript, SCSS, MDX)
 - ✅ **Fast development feedback** loops
 - ✅ **Landing pages and marketing sites**
 
@@ -152,128 +150,9 @@ Similar to Biome replacing ESLint+Prettier, Turbopack is part of Vercel's Rust-b
 - **Turbopack** - Fast bundling
 - **SWC** - Fast TypeScript/JavaScript compilation
 
-For this landing page starter with standard Next.js features (MDX, Tailwind, TypeScript), Turbopack provides significantly faster development without any downsides.
+For this landing page starter with standard Next.js features (MDX, SCSS, TypeScript), Turbopack provides significantly faster development without any downsides.
 
-### Why Tailwind CSS?
-
-This starter includes the `--tailwind` flag to set up Tailwind CSS, a utility-first CSS framework that's become the modern standard for rapid UI development.
-
-**🎨 What is Tailwind CSS?**
-
-- **Utility-first framework** - Build designs using pre-built utility classes
-- **Highly customizable** - Configure colors, spacing, typography through a config file
-- **Component-friendly** - Works perfectly with React components
-- **Design system ready** - Consistent spacing, colors, and typography out of the box
-
-**⚡ Key benefits:**
-
-- **Rapid development** - No need to write custom CSS for common patterns
-- **Consistent design** - Built-in design system prevents inconsistent spacing/colors
-- **Smaller bundle size** - Only includes classes you actually use (via purging)
-- **Responsive by default** - Built-in responsive design utilities (`sm:`, `md:`, `lg:`)
-- **Dark mode support** - Easy dark mode implementation with `dark:` prefix
-
-**🔧 How it works:**
-Instead of writing custom CSS:
-
-```css
-.button {
-  background-color: #3b82f6;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-}
-```
-
-You use utility classes:
-
-```jsx
-<button className="bg-blue-500 text-white px-4 py-2 rounded-md font-medium">
-  Click me
-</button>
-```
-
-**🎯 Perfect for landing pages:**
-
-- **Rapid prototyping** - Quickly try different layouts and styles
-- **Consistent spacing** - Built-in spacing scale (`p-4`, `m-8`, `gap-6`)
-- **Responsive design** - Mobile-first responsive utilities
-- **Component libraries** - Works seamlessly with shadcn/ui and other component systems
-
-**🔄 Complementary approach:**
-This starter combines Tailwind with other approaches:
-
-- **Tailwind utilities** - For rapid styling and prototyping
-- **SCSS modules** - For complex component-specific styles
-- **CSS custom properties** - For theme variables and design tokens
-- **shadcn/ui components** - For pre-built, customizable components
-
-**📋 Common utility patterns:**
-
-```jsx
-// Layout
-<div className="max-w-4xl mx-auto px-4">
-
-// Flexbox
-<div className="flex items-center justify-between gap-4">
-
-// Grid
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-// Responsive text
-<h1 className="text-2xl md:text-4xl font-bold">
-
-// Dark mode
-<div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
-```
-
-Tailwind provides the foundation for fast, consistent styling while more complex component logic can use SCSS modules when needed.
-
-### 2. Add MDX functionality
-
-```bash
-pnpm add \
-  @next/mdx \
-  @mdx-js/loader \
-  @mdx-js/react \
-  @types/mdx \
-  remark-gfm
-```
-
-**Package purposes:**
-
-- `@next/mdx` → Next.js MDX integration
-- `@mdx-js/loader` → Webpack loader for MDX files
-- `@mdx-js/react` → React bindings for MDX
-- `@types/mdx` → TypeScript definitions for MDX
-- `remark-gfm` → GitHub Flavored Markdown support
-
-### 3. Configure MDX
-
-Update `next.config.ts`:
-
-```typescript
-import type { NextConfig } from "next";
-import createMDX from "@next/mdx";
-
-const nextConfig: NextConfig = {
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
-};
-
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: ["remark-gfm"], // String format required for Turbopack
-    rehypePlugins: [],
-  },
-});
-
-export default withMDX(nextConfig);
-```
-
-**Important:** Use string format `"remark-gfm"` not the imported function for Turbopack compatibility.
-
-### 4. Add SCSS support
+### 2. Add SCSS support
 
 ```bash
 pnpm add sass
@@ -330,54 +209,156 @@ $border-radius: 0.5rem;
 }
 ```
 
-**🎯 Why add SCSS to this starter?**
+### Why SCSS Modules?
 
-- **Complements Tailwind** - Use SCSS for complex component styles, Tailwind for utilities
-- **CSS Modules compatibility** - Works perfectly with `.module.scss` files for scoped styling
-- **Design system** - Variables and mixins help maintain consistent styling
-- **Better organization** - Nest related styles and use imports to organize code
-- **Advanced features** - Color functions, calculations, and logic not available in plain CSS
+This starter uses SCSS modules for component styling, providing the best of both scoped CSS and powerful preprocessor features.
 
-**📋 How it fits the architecture:**
+**🎨 What are SCSS Modules?**
+
+- **Component-scoped CSS** - Styles are automatically scoped to components
+- **SCSS preprocessing** - Variables, nesting, mixins, and functions
+- **Type safety** - TypeScript integration for CSS class names
+- **No naming conflicts** - Classes are automatically namespaced
+
+**⚡ Key benefits:**
+
+- **Maintainable code** - Styles live next to components they style
+- **No global conflicts** - Scoped classes prevent CSS collisions
+- **Powerful features** - Full SCSS preprocessing capabilities
+- **Design system ready** - CSS custom properties for consistent theming
+- **Performance** - Only loads styles for components actually used
+
+**🔧 How it works:**
+Component structure:
 
 ```
-src/
-├── styles/
-│   ├── typography.css      # Global typography
-│   └── layout.css          # Global layout patterns
-├── components/
-│   └── Button/
-│       ├── Button.tsx
-│       └── Button.module.scss  # SCSS with variables and nesting
-└── app/
-    ├── globals.css         # Tailwind imports
-    └── page.module.scss    # Page-specific SCSS styles
+src/components/Button/
+├── Button.tsx
+└── Button.module.scss
 ```
 
-SCSS gives you the power of a preprocessor while maintaining the scoped styling benefits of CSS Modules.
+SCSS Module (`Button.module.scss`):
 
-### 5. Setup shadcn/ui
+```scss
+$primary-color: #3b82f6;
+$border-radius: 0.375rem;
 
-Initialize shadcn/ui with MCP server support:
+.button {
+  background-color: $primary-color;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+
+  &.secondary {
+    background-color: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+  }
+}
+```
+
+React Component (`Button.tsx`):
+
+```tsx
+import styles from "./Button.module.scss";
+import clsx from "clsx";
+
+interface ButtonProps {
+  variant?: "primary" | "secondary";
+  children: React.ReactNode;
+}
+
+export default function Button({ variant = "primary", children }: ButtonProps) {
+  return (
+    <button
+      className={clsx(
+        styles.button,
+        variant === "secondary" && styles.secondary
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+**🎯 Perfect for landing pages:**
+
+- **Component isolation** - Each component's styles are self-contained
+- **Design consistency** - Shared CSS custom properties across components
+- **Responsive design** - SCSS mixins for responsive breakpoints
+- **Theme system** - CSS custom properties enable light/dark mode
+
+### 3. Add MDX functionality
 
 ```bash
-pnpm dlx shadcn@latest mcp init --client vscode
+pnpm add \
+  @next/mdx \
+  @mdx-js/loader \
+  @mdx-js/react \
+  @types/mdx \
+  remark-gfm
 ```
 
-Then initialize the component system:
+**Package purposes:**
+
+- `@next/mdx` → Next.js MDX integration
+- `@mdx-js/loader` → Webpack loader for MDX files
+- `@mdx-js/react` → React bindings for MDX
+- `@types/mdx` → TypeScript definitions for MDX
+- `remark-gfm` → GitHub Flavored Markdown support
+
+### 4. Configure MDX
+
+Update `next.config.ts`:
+
+```typescript
+import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+
+const nextConfig: NextConfig = {
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+};
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: ["remark-gfm"], // String format required for Turbopack
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(nextConfig);
+```
+
+**Important:** Use string format `"remark-gfm"` not the imported function for Turbopack compatibility.
+
+### 5. Add clsx for conditional styling
 
 ```bash
-npx shadcn@latest init
+pnpm add clsx
 ```
 
-**Why shadcn/ui?**
+clsx is a utility for conditionally joining CSS classes together. Perfect for SCSS modules:
 
-- Pre-built, customizable components
-- Works seamlessly with Tailwind CSS
-- Copy-paste components you own and can modify
-- Excellent TypeScript support
+```tsx
+import clsx from "clsx";
+import styles from "./Component.module.scss";
 
-### 6. Configure VS Code
+const classes = clsx(
+  styles.base,
+  variant && styles[variant],
+  isActive && styles.active
+);
+```
+
+### 6. Configure VS Code (Optional)
 
 Create `.vscode/settings.json`:
 
@@ -385,176 +366,37 @@ Create `.vscode/settings.json`:
 {
   "css.validate": false,
   "scss.validate": false,
-  "less.validate": false,
-  "css.customData": [".vscode/css_custom_data.json"],
-  "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-  ],
-  "tailwindCSS.includeLanguages": {
-    "typescript": "javascript",
-    "typescriptreact": "javascript"
-  },
-  "files.associations": {
-    "*.css": "tailwindcss"
-  }
+  "less.validate": false
 }
 ```
 
-Create `.vscode/css_custom_data.json`:
+This prevents CSS validation errors for custom properties and modern CSS features.
 
-```json
-{
-  "version": 1.1,
-  "atDirectives": [
-    {
-      "name": "@tailwind",
-      "description": "Use the @tailwind directive to insert Tailwind's base, components, utilities and variants styles into your CSS."
-    },
-    {
-      "name": "@apply",
-      "description": "Use @apply to inline any existing utility classes into your own custom CSS."
-    },
-    {
-      "name": "@layer",
-      "description": "Use the @layer directive to tell Tailwind which layer a set of custom styles belong to."
-    },
-    {
-      "name": "@theme",
-      "description": "Use the @theme directive to access your theme configuration values using dot notation."
-    },
-    {
-      "name": "@custom-variant",
-      "description": "Define custom variants for Tailwind CSS v4."
-    }
-  ]
-}
-```
+### 7. Project structure
 
-**These files prevent:**
-
-- CSS validation errors for Tailwind directives
-- Unknown CSS property warnings
-- Missing intellisense for Tailwind classes
-
-### 7. Add code-fu persistent memory for standard (optional)
-
-If you have the code-fu documentation workspace, add it for persistent AI memory and standards:
-
-1. **File** → **Add Folder to Workspace...**
-2. Navigate to `code-fu`
-3. Click **Add**
-
-This keeps your current workspace and adds the code-fu folder as a second root.
-
-**🧠 Why code-fu matters: Persistent memory for standards**
-
-The code-fu repository implements a "Persistent AI Instructions" system that solves a critical problem: **AI assistants have no memory between conversations**.
-
-**The AI Memory Problem:**
-
-- ❌ AI doesn't remember previous instructions or established patterns
-- ❌ Each conversation starts fresh with no institutional knowledge
-- ❌ Standards and best practices need to be re-explained every time
-- ❌ No consistency across different AI interactions
-
-**The Solution: Living Documentation System**
-code-fu creates persistent memory through structured documentation:
+Your final project structure should look like:
 
 ```
-code-fu/docs/
-├── check-me.md                    # Central AI instruction hub
-├── guidelines/
-│   ├── atomic-git-commits.md      # Git commit standards
-│   ├── markdown-standards.md      # Documentation formatting
-│   └── bug-fixing-process.md      # Systematic debugging
-├── best-practice/
-│   └── css/
-│       ├── css-naming-conventions.md
-│       └── css-file-organization.md
-└── cognitive-freedom/
-    ├── regression-learning.md     # Knowledge building methodology
-    └── my-cognitive-enhancement.md
+my-landing/
+├── src/
+│   ├── app/
+│   │   ├── globals.css         # Global styles and CSS custom properties
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   └── Button/
+│   │       ├── Button.tsx
+│   │       └── Button.module.scss
+│   ├── styles/
+│   │   ├── themes.css          # CSS custom properties for themes
+│   │   ├── typography.css      # Global typography styles
+│   │   └── layout.css          # Global layout utilities
+│   └── lib/
+│       └── utils.ts            # Utility functions
+├── next.config.ts
+├── package.json
+└── biome.json
 ```
-
-**How It Works:**
-
-1. **Central Index** - `check-me.md` contains all AI instructions and document references
-2. **Embedded Instructions** - Documents include specific AI guidance (marked with `[AI INSTRUCTION EMBEDDED]`)
-3. **Reference Pattern** - AI assistants check relevant docs before giving advice
-4. **Consistent Standards** - Same advice across all conversations and sessions
-
-**Example Benefits in This Project:**
-
-- **Git commits** follow Chris Beams style automatically (from `atomic-git-commits.md`)
-- **CSS architecture** follows separation of concerns (from `css-file-organization.md`)
-- **Naming conventions** use camelCase for CSS Modules (from `css-naming-conventions.md`)
-- **Markdown formatting** uses sentence case headings (from `markdown-standards.md`)
-
-**The Cognitive Enhancement Loop:**
-
-```
-Documentation → AI Instructions → Consistent Output → Improved Documentation → Better AI Instructions
-```
-
-This creates a system where knowledge compounds over time instead of being lost between conversations.
-
-**Usage Pattern:**
-Start any AI conversation with: _"Check my check-me.md file and follow the AI assistant instructions"_
-
-This transforms AI from a stateless tool into a persistent, institutional knowledge system that maintains and applies your standards consistently across all interactions.
-
-### 8. Setup pre-commit hooks
-
-Install pre-commit for code quality checks:
-
-```bash
-pip install pre-commit
-```
-
-Create `.pre-commit-config.yaml`:
-
-```yaml
-repos:
-  - repo: local
-    hooks:
-      - id: typescript-check
-        name: TypeScript Type Check
-        entry: pnpm run type:check
-        language: system
-        files: '\.(ts|tsx)$'
-        pass_filenames: false
-        always_run: true
-```
-
-Add the type check script to `package.json`:
-
-```json
-{
-  "scripts": {
-    "type:check": "pnpm exec tsc --noEmit"
-  }
-}
-```
-
-Install and run the pre-commit hooks:
-
-```bash
-pre-commit install
-pre-commit run --all-files
-```
-
-This ensures TypeScript type checking runs automatically before every commit.
-
-### 9. Verify MCP server
-
-Check if the shadcn MCP server is running:
-
-```bash
-npx shadcn@latest mcp --help
-```
-
-The MCP server allows you to browse, search, and install components from multiple registries.
 
 ## GitHub Flavored Markdown support
 
@@ -597,40 +439,36 @@ Here's a sentence with a footnote[^1].
 [^1]: This is the footnote content.
 ```
 
-### Component registries
-
-Access to multiple component libraries:
-
-- **shadcn/ui** - Core component library
-- **Aceternity UI** - Animated components
-- **Origin UI** - Modern UI components
-- **Cult UI** - Creative component library
-- **Magic UI** - Animated effects and components
-- **Tremor** - Data visualization components
-
-### Development experience
+## Development experience
 
 - **Turbopack** - Faster development builds
 - **TypeScript** - Type safety and better DX
 - **Biome** - Fast linting and formatting (replaces ESLint + Prettier)
 - **pnpm** - Efficient package management
-- **SCSS** - Enhanced CSS with variables and nesting
-- **CSS Modules** - Scoped styling
+- **SCSS Modules** - Scoped styling with preprocessing
+- **CSS Custom Properties** - Design system and theming
 - **Import aliases** - Clean import paths with `@/`
 
 ## Next steps
 
 1. **Start development**: `pnpm dev`
 2. **Build for production**: `pnpm build`
-3. **Add components**: `npx shadcn@latest add button`
-4. **Browse registries**: Use the MCP server to explore available components
-5. **Create MDX content**: Add `.mdx` files with full GFM support
+3. **Create components**: Add new components with SCSS modules
+4. **Add MDX content**: Create `.mdx` files with full GFM support
+5. **Customize themes**: Update CSS custom properties in `styles/themes.css`
 
 ## Component philosophy
 
-This starter treats components like "painting with code" - having lots of different toolsets you can easily mix into one space. The multiple registries give you a rich palette of pre-built components to choose from.
+This starter treats styling as component-scoped with shared design tokens. Each component owns its styles while participating in a consistent design system through CSS custom properties.
 
 **Tip:** All `create-next-app` flags are just shortcuts. If you miss them during setup, you can add the equivalent functionality manually later.
+
+## Styling architecture
+
+- **SCSS Modules** - Component-specific styles with preprocessing power
+- **Global styles** - Layout, typography, and reset styles
+- **CSS Custom Properties** - Design tokens and theme variables
+- **Utility helpers** - Simple layout classes when needed (using `clsx`)
 
 ## Troubleshooting
 
@@ -639,17 +477,17 @@ This starter treats components like "painting with code" - having lots of differ
 - Use string format for plugins: `remarkPlugins: ["remark-gfm"]`
 - Not function imports: `remarkPlugins: [remarkGfm]`
 
-**Tailwind not working?**
-
-- Ensure VS Code settings are configured
-- Check that `css_custom_data.json` is in place
-- Verify Tailwind is in your `package.json`
-
 **SCSS not compiling?**
 
 - Ensure `sass` package is installed
 - Check file extensions in `next.config.ts`
 - Verify SCSS files use `.module.scss` for CSS Modules
+
+**CSS custom properties not working?**
+
+- Check that variables are defined in `styles/themes.css`
+- Ensure they're imported in `globals.css`
+- Verify the CSS custom property syntax: `var(--property-name)`
 
 ---
 
