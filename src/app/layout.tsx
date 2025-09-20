@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
-import { SimpleHeader } from "@/components/blocks/simple-header";
+import { SimpleHeader } from "@/components/SimpleHeader";
 
 const fontSans = FontSans({
   subsets: ["latin"],

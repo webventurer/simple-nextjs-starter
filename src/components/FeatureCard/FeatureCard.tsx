@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import type React from "react";
-import styles from "./feature-card.module.scss";
+import styles from "./FeatureCard.module.scss";
 
 export type FeatureCardVariantType = "compact" | "highlighted";
 

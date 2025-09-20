@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import styles from "./simple-header.module.scss";
+import styles from "./SimpleHeader.module.scss";
 
 export interface SimpleHeaderProps {
   title?: string;

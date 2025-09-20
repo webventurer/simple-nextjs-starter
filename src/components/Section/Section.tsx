@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import type React from "react";
 
-import styles from "./section.module.scss";
+import styles from "./Section.module.scss";
 
 export interface SectionProps {
   children: React.ReactNode;
