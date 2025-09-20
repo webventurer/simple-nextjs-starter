@@ -1,0 +1,98 @@
+// CTA component styling - CSS Modules with SCSS
+$color-white: white;
+$gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+
+$spacing-lg: 1rem;
+$spacing-xl: 1.5rem;
+$spacing-xxl: 2rem;
+$spacing-5xl: 5rem;
+
+.ctaSection {
+  padding: $spacing-5xl 0;
+  background: linear-gradient(135deg, #111827 0%, #000000 100%);
+}
+
+.ctaContent {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  text-align: center;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-xl;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xxl;
+  }
+}
+
+.ctaTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.ctaDescription {
+  font-size: 1.25rem;
+  color: #d1d5db;
+  margin-bottom: $spacing-xxl;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+  }
+}
+
+// Override Button component styling to match original CTA buttons exactly
+.ctaButton {
+  min-width: 160px;
+
+  @media (max-width: 639px) {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  // Primary button styling (default)
+  > a[href] {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
+    border: none !important;
+    color: white !important;
+    padding: 1rem 2rem !important;
+    border-radius: 0.75rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    transition: all 0.2s ease-in-out !important;
+    display: inline-block !important;
+
+    &:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4) !important;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
+    }
+  }
+
+  // Secondary/outlined button styling
+  &.outlined {
+    > a[href] {
+      border: 2px solid rgba(255, 255, 255, 0.3) !important;
+      background: transparent !important;
+      color: white !important;
+      backdrop-filter: blur(10px) !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        transform: none !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+}

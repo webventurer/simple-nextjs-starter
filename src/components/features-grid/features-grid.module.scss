@@ -1,0 +1,71 @@
+// Features Grid component styling - CSS Modules with SCSS
+$color-secondary: #1e293b;
+$color-text-light: #64748b;
+$color-white: white;
+$color-bg-gray: #f9fafb;
+
+$spacing-lg: 1rem;
+$spacing-xl: 1.5rem;
+$spacing-xxl: 2rem;
+$spacing-4xl: 4rem;
+$spacing-5xl: 5rem;
+
+.featuresGridSection {
+  padding: $spacing-5xl 0;
+  background: $color-white;
+
+  &.highlighted {
+    background: $color-bg-gray;
+  }
+}
+
+.featuresGridContent {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @media (min-width: 640px) {
+    padding: 0 $spacing-xl;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 $spacing-xxl;
+  }
+}
+
+.featuresGridHeader {
+  text-align: center;
+  margin-bottom: $spacing-4xl;
+}
+
+.featuresGridTitle {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: $color-secondary;
+  margin-bottom: $spacing-lg;
+  line-height: 1.3;
+}
+
+.featuresGridDescription {
+  font-size: 1.25rem;
+  color: $color-text-light;
+  max-width: 768px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xxl;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+    // Highlighted variant uses different background\n  // &.highlighted - FeatureCard components get different styling via :nth-child
+}

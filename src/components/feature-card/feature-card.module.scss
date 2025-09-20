@@ -1,0 +1,78 @@
+// Feature Card component styling - CSS Modules with SCSS
+$color-secondary: #1e293b;
+$color-text-light: #64748b;
+$color-white: white;
+
+$spacing-md: 0.75rem;
+$spacing-lg: 1rem;
+$spacing-xxl: 2rem;
+$spacing-3xl: 3rem;
+
+$radius-lg: 1rem;
+
+.featureCard {
+  background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+  padding: $spacing-xxl;
+  border-radius: $radius-lg;
+  border: 1px solid #c7d2fe;
+  transition: all 0.3s ease-in-out;
+  height: 100%; // Ensures equal height in grid layouts
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  // Alternate gradient backgrounds for variety
+  &:nth-child(2) {
+    background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+    border-color: #d8b4fe;
+  }
+
+  &:nth-child(3) {
+    background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+    border-color: #86efac;
+  }
+
+  &:nth-child(4) {
+    background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+    border-color: #fbbf24;
+  }
+
+  &:nth-child(5) {
+    background: linear-gradient(135deg, #fce7f3 0%, #fdf2f8 100%);
+    border-color: #f472b6;
+  }
+
+  &:nth-child(6) {
+    background: linear-gradient(135deg, #e0f2fe 0%, #e0f7fa 100%);
+    border-color: #06b6d4;
+  }
+}
+
+.featureIcon {
+  width: $spacing-3xl;
+  height: $spacing-3xl;
+  border-radius: $radius-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: $spacing-lg;
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+}
+
+.featureTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $color-secondary;
+  margin-bottom: $spacing-md;
+  line-height: 1.4;
+}
+
+.featureDescription {
+  color: $color-text-light;
+  line-height: 1.6;
+  margin: 0; // Reset default margin
+}

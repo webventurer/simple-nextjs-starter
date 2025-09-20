@@ -1,19 +1,20 @@
-import styles from "./page.module.scss";
+import { Metadata } from "next";
+import contentStyles from "./page.module.scss";
+import { MDXWrapper } from "./mdx-wrapper";
 
+// Metadata export (server-side only)
+export const metadata: Metadata = {
+  title: "Simple Test 2 - MDX + React Components",
+  description:
+    "Enhanced version with MDX content and reusable React components following frontend architecture principles",
+};
+
+// Server Component (default) - no 'use client' directive needed
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Next.js Starter
-        </h1>
-        <p className={styles.subtitle}>
-          A clean, modern starter template for your Next.js projects.
-        </p>
-        <div className={styles.footer}>
-          <p>Edit <code>src/app/page.tsx</code> to get started</p>
-        </div>
-      </main>
+    <div className={contentStyles.pageWrapper}>
+      {/* This wrapper provides the background gradient like simple-test */}
+      <MDXWrapper />
     </div>
   );
 }
