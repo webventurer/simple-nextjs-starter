@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import "../styles/layout.css";
 import "../styles/typography.css";
-import { SimpleHeader } from "@/components/SimpleHeader";
-import headerStyles from "@/components/SimpleHeader/SimpleHeader.module.scss";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -43,28 +41,7 @@ export default function RootLayout({
       lang="en"
       className={cn(fontSans.variable, nunito.variable, lato.variable)}
     >
-      <body>
-        <SimpleHeader>
-          <div className={headerStyles.logo}>
-            <div className={headerStyles.logoIcon}>
-              <span className={headerStyles.logoText}>S</span>
-            </div>
-            <h1 className={headerStyles.logoText}>Simple Starter</h1>
-          </div>
-          <nav className={headerStyles.nav}>
-            <a href="/about" className={headerStyles.navLink}>
-              About
-            </a>
-            <a href="/contact" className={headerStyles.navLink}>
-              Contact
-            </a>
-            <a href="/features" className={headerStyles.navLink}>
-              Features
-            </a>
-          </nav>
-        </SimpleHeader>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
