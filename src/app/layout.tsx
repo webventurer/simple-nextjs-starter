@@ -64,9 +64,6 @@ export default function RootLayout({
           </nav>
         </SimpleHeader>
         {children}
-        {process.env.NODE_ENV === "development" && (
-          <script src="/dev-auto-refresh.js" />
-        )}
       </body>
     </html>
   );
