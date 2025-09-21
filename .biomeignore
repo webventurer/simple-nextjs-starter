@@ -1,0 +1,26 @@
+# Biome ignore file to prevent crashes
+# Focus only on core source files
+
+# Ignore all content files
+content/
+**/*.mdx
+**/*.md
+
+# Ignore build/cache directories
+.next/
+dist/
+build/
+node_modules/
+.cache/
+
+# Ignore config files that might cause issues
+*.config.*
+.env*
+.DS_Store
+*.log
+
+# Ignore any temporary or backup files
+*.tmp
+*.temp
+*~
+*.bak
