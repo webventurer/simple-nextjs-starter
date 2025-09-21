@@ -24,5 +24,7 @@
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }

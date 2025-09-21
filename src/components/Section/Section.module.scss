@@ -1,0 +1,18 @@
+.section {
+    padding: 1rem;
+
+    &.strong {
+        background-color: #5b6270;
+        color: #f3f5ef;
+    }
+
+    &.subtle {
+        background-color: #f3f5ef;
+        color: #5b6270;
+    }
+
+    >.content {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+}
