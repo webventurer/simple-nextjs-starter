@@ -18,15 +18,13 @@ export function Header({ logo, children }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
-        <div className={styles.headerInner}>
-          <div className={styles.logo}>
-            <div className={styles.logoIcon}>
-              <span className={styles.logoText}>{logo}</span>
-            </div>
-            <h1 className={styles.logoText}>{title}</h1>
+        <div className={styles.logo}>
+          <div className={styles.logoIcon}>
+            <span className={styles.logoText}>{logo}</span>
           </div>
-          {navElement}
+          <h1 className={styles.logoText}>{title}</h1>
         </div>
+        {navElement}
       </div>
     </header>
   );

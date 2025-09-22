@@ -24,14 +24,10 @@ $radius-lg: 1rem;
 .headerContent {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1rem; // Match Section padding
-}
-
-.headerInner {
+    padding: $spacing-xl 1rem; // Combined padding
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $spacing-xl 0;
 }
 
 .logo {
