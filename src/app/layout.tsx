@@ -31,6 +31,11 @@ export const metadata: Metadata = {
   },
 };
 
+async function SiteHeader() {
+  const { default: Layout } = await import(`@/content/layout.mdx`);
+  return <Layout />;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -41,7 +46,10 @@ export default function RootLayout({
       lang="en"
       className={cn(fontSans.variable, nunito.variable, lato.variable)}
     >
-      <body>{children}</body>
+      <body>
+        <SiteHeader />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
