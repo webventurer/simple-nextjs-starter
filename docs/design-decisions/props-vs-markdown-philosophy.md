@@ -12,19 +12,264 @@ This philosophy guides how we design component APIs that are both powerful for d
 
 ## 🚨 Quick reference
 
-**Use props for:**
-- Simple, predictable values (strings, numbers, booleans)
-- Configuration the component needs to function
-- Data that's always required and structured
+### When to use props ✅
+- **Simple/primitive data** (strings, numbers, booleans)
+- **Essential configuration** the component needs to function
+- **Type-safe, explicit APIs** with predictable structure
+- **Data that doesn't need markup** or formatting
 
-**Use markdown/children for:**
-- Content creation that needs flexibility
-- Multiple items with variable structure
-- Natural authoring experience with formatting
+### When to use markdown/children ✅
+- **Content that needs markup** or rich formatting
+- **Compositional, flexible content** that varies in structure
+- **JSX-like natural nesting** patterns
+- **Multiple items** with variable quantity or types
+
+## When to use props ✅
+
+### 1. Data is simple/primitive
+```jsx
+<Header title="Simple Starter" />        // ✅ String - always needed, simple
+<Counter count={5} />                    // ✅ Number
+<Modal isVisible={true} />               // ✅ Boolean
+```
+
+### 2. Data is essential and predictable
+```jsx
+<Button text="Click me" variant="primary" />  // ✅ Always need text and style
+<Image src="/photo.jpg" alt="Description" />  // ✅ Required attributes
+```
+
+**Avoid over-structured configuration:**
+```jsx
+// ❌ Too config-heavy - this should probably be children
+<Header nav={[
+  { label: "Home", href: "/home" },
+  { label: "About", href: "/about" }
+]} />
+
+// ✅ Better - simple props + flexible children
+<Header title="Simple Starter">
+  <Nav>
+    [Home](/home)
+    [About](/about)
+  </Nav>
+</Header>
+```
+
+### 3. You want explicit, typed API
+- TypeScript can validate the prop
+- IDE autocomplete works perfectly
+- Clear contract of what the component expects
+- Easy to document and understand
+
+### 4. Data doesn't need markup/styling
+- Plain text titles
+- Simple labels
+- Configuration values
+- Primitive data types
+
+## When to use children ✅
+
+### 1. Content needs markup
+```jsx
+<Section>
+  ## Welcome
+  This is *formatted* content with **styling**
+
+  - List items
+  - With complex structure
+</Section>
+```
+
+### 2. Content is compositional
+```jsx
+<Header>
+  <Logo />
+  <Navigation />
+  <UserMenu />
+  <SearchBar />
+</Header>
+```
+
+### 3. Content varies significantly
+- Sometimes simple text, sometimes complex components
+- Unknown structure at component design time
+- Flexible, reusable component patterns
+
+### 4. You want JSX-like natural nesting
+```jsx
+<Card>
+  <CardHeader>
+    ### Card Title
+    <Badge>New</Badge>
+  </CardHeader>
+  <CardBody>
+    Complex content here...
+  </CardBody>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## The decision framework 🎯
+
+### Ask these questions:
+
+1. **Is the data simple?** → Props
+2. **Does it need markup?** → Children
+3. **Is it configuration?** → Props
+4. **Is it compositional?** → Children
+5. **Do I want type safety?** → Props
+6. **Do I want flexibility?** → Children
+
+### The pattern
+```jsx
+<Component
+  simpleData="prop"           // Simple, typed data
+  structuredData={object}     // Configuration
+>
+  <ComplexMarkupContent />    // Rich, flexible content
+</Component>
+```
+
+## Real-world example: Header component
+
+### Our Header decision breakdown
+
+**Title as prop makes sense because:**
+- ✅ It's always simple text (`string`)
+- ✅ It's configuration data for the site
+- ✅ It doesn't need markup or styling
+- ✅ It's predictable and can be typed
+- ✅ Clear, explicit API
+
+**Navigation as children makes sense because:**
+- ✅ It contains markup (links, lists, formatting)
+- ✅ It's compositional (multiple nav items with different structures)
+- ✅ It benefits from MDX's natural link syntax
+- ✅ It might vary significantly between pages
+
+### Implementation
+```jsx
+// ✅ Perfect balance
+<Header title="Simple Starter">  {/* Simple prop */}
+  <Nav>                          {/* Complex children */}
+    [Home](/home)
+    [About](/about)
+    [Contact](/contact)
+  </Nav>
+</Header>
+```
+
+### Alternative we rejected
+```jsx
+// ❌ Over-engineered - parsing children for simple title
+<Header logo="S">
+  Simple Starter               {/* Complex parsing needed */}
+  <Nav>
+    [Home](/home)
+    [About](/about)
+  </Nav>
+</Header>
+```
+
+## Common anti-patterns ❌
+
+### 1. Props for markup-heavy content
+```jsx
+// ❌ Bad: Complex HTML as prop
+<Card content="### Title\n\nComplex *formatted* content" />
+
+// ✅ Good: Use children
+<Card>
+  ### Title
+  Complex *formatted* content
+</Card>
+```
+
+### 2. Children for simple configuration
+```jsx
+// ❌ Bad: Simple data as children requiring parsing
+<Modal>
+  true                        {/* Requires parsing */}
+  Modal content
+</Modal>
+
+// ✅ Good: Simple data as props
+<Modal isOpen={true}>
+  Modal content
+</Modal>
+```
+
+### 3. Mixed concerns without clear separation
+```jsx
+// ❌ Bad: Unclear what's config vs content
+<Header>
+  Simple Starter              {/* Is this title or content? */}
+  primary                     {/* Is this theme or content? */}
+  <Nav>...</Nav>             {/* This is clearly navigation */}
+</Header>
+
+// ✅ Good: Clear separation
+<Header title="Simple Starter" theme="primary">
+  <Nav>...</Nav>
+</Header>
+```
+
+### 4. Complex objects as props
+```jsx
+// ❌ Props becoming configuration hell
+<Header
+  navigation={{
+    style: "horizontal",
+    items: [
+      { label: "Home", href: "/home", icon: "house", active: true },
+      { label: "About", href: "/about", icon: "info", submenu: [...] }
+    ],
+    theme: { color: "blue", hoverEffect: "underline" }
+  }}
+/>
+
+// ✅ Props for simple data, markdown for content
+<Header theme="blue">
+  <Nav>
+    [🏠 Home](/home)
+    [ℹ️ About](/about)
+  </Nav>
+</Header>
+```
+
+### 5. Markdown for simple values
+```jsx
+// ❌ Using children for simple configuration
+<Button>
+  primary
+  large
+  Click me
+</Button>
+
+// ✅ Props for simple data, children for content
+<Button variant="primary" size="large">
+  Click me
+</Button>
+```
+
+### 6. Props for natural content
+```jsx
+// ❌ Props for content that needs formatting
+<Card
+  title="Welcome"
+  content="Visit our **amazing** products and [contact us](/contact) today!"
+/>
+
+// ✅ Markdown for natural content creation
+<Card title="Welcome">
+  Visit our **amazing** products and [contact us](/contact) today!
+</Card>
+```
 
 ## The API design philosophy 🎯
-
-### Simple data through props
 Props handle **what the component needs to function**:
 
 ```jsx
@@ -153,60 +398,6 @@ No documentation needed!
 - **Debuggable** - Easy to trace issues between props and content
 - **Testable** - Props and content can be tested separately
 
-## Anti-patterns to avoid ❌
-
-### 1. Complex objects as props
-```jsx
-// ❌ Props becoming configuration hell
-<Header
-  navigation={{
-    style: "horizontal",
-    items: [
-      { label: "Home", href: "/home", icon: "house", active: true },
-      { label: "About", href: "/about", icon: "info", submenu: [...] }
-    ],
-    theme: { color: "blue", hoverEffect: "underline" }
-  }}
-/>
-
-// ✅ Props for simple data, markdown for content
-<Header theme="blue">
-  <Nav>
-    [🏠 Home](/home)
-    [ℹ️ About](/about)
-  </Nav>
-</Header>
-```
-
-### 2. Markdown for simple values
-```jsx
-// ❌ Using children for simple configuration
-<Button>
-  primary
-  large
-  Click me
-</Button>
-
-// ✅ Props for simple data, children for content
-<Button variant="primary" size="large">
-  Click me
-</Button>
-```
-
-### 3. Props for natural content
-```jsx
-// ❌ Props for content that needs formatting
-<Card
-  title="Welcome"
-  content="Visit our **amazing** products and [contact us](/contact) today!"
-/>
-
-// ✅ Markdown for natural content creation
-<Card title="Welcome">
-  Visit our **amazing** products and [contact us](/contact) today!
-</Card>
-```
-
 ## The decision framework 📋
 
 When designing a component API, ask:
@@ -236,6 +427,47 @@ Let markdown handle the flexibility and formatting needs.
 
 ### 4. Components bridge the gap
 Your React components translate between simple APIs and complex functionality.
+
+### 5. Favor explicitness over cleverness
+- Clear props are better than complex children parsing
+- Type safety trumps flexibility when you don't need it
+- Predictable APIs are easier to maintain
+
+### 6. Use the "surprise test"
+- Would a new developer be surprised by the API?
+- Is it clear what goes where?
+- Can they figure it out from the JSX alone?
+
+### 7. Consider the use case frequency
+- **Common, simple cases** → Props (optimize for ease)
+- **Rare, complex cases** → Children/Markdown (optimize for flexibility)
+
+## Evolution strategy 📈
+
+### Start simple, add flexibility when needed
+```jsx
+// Phase 1: Simple props (80% of use cases)
+<Button text="Click me" />
+
+// Phase 2: Add children for complex cases (remaining 20%)
+<Button>
+  <Icon /> Click me
+</Button>
+
+// Phase 3: Support both patterns
+<Button text="Click me" />              // Simple case
+<Button><Icon /> Click me</Button>      // Complex case
+```
+
+## Rule of thumb 📏
+
+> **Simple, typed data** → Props
+
+> **Complex, markup-heavy content** → Markdown/Children
+
+When in doubt, ask: "Would I be surprised if this were a prop instead of children, or vice versa?"
+
+The best APIs feel natural and predictable to developers who haven't read the documentation.
 
 ## The bigger picture 🎨
 
