@@ -3,10 +3,10 @@
 ## The universal principle of coding
 
 > **When faced with a coding decision, choose the path that makes change easier.**
-> 
+>
 > — Dave Thomas, "Transforming Programming", YOW! Conference 2018
 
-This principle underlies every design decision we make. Every single design principle on the planet is a subset of this core idea: well-designed code is easier to change than poorly designed code. 
+This principle underlies every design decision we make. Every single design principle on the planet is a subset of this core idea: well-designed code is easier to change than poorly designed code.
 
 When we avoid making our code easier to change upfront, we're running what Dave Thomas calls "denial" - a "save now, pay later scheme" where the technical debt will inevitably catch up with us. The key is building design intuition through conscious practice and forming good habits from the start, making deliberate choices about where to optimize for change.
 
@@ -113,7 +113,7 @@ This works, but introduces:
 ### Why the complexity is actually worth it
 
 1. **Headers change infrequently** - This isn't code you'll be debugging often
-2. **The complexity is contained** - It's isolated to one component, not spread throughout the codebase  
+2. **The complexity is contained** - It's isolated to one component, not spread throughout the codebase
 3. **The benefit is high** - That MDX syntax is genuinely beautiful and maintainable for content creators
 
 ### The complexity isn't that bad
@@ -129,7 +129,7 @@ It's **sophisticated**, not **complex**. There's a difference.
 
 **Headers are "set it and forget it" components.** You'll spend way more time:
 - Adding new pages to navigation
-- Updating site titles  
+- Updating site titles
 - Making content changes
 
 All of which are **dead simple** with your current MDX approach.
