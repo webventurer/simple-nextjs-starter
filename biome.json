@@ -41,6 +41,15 @@
       "formatter": {
         "enabled": false
       }
+    },
+    {
+      "includes": ["archive/**/*"],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      }
     }
   ],
   "linter": {
