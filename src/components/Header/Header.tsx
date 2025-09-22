@@ -1,20 +1,13 @@
-import React from "react";
+import type React from "react";
 import styles from "./Header.module.scss";
 
 interface HeaderProps {
   logo: string;
+  title: string;
   children: React.ReactNode;
 }
 
-export function Header({ logo, children }: HeaderProps) {
-  const [titleElement, navElement] = React.Children.toArray(children);
-
-  const title = React.isValidElement(titleElement)
-    ? String(
-        (titleElement.props as { children?: React.ReactNode })?.children || "",
-      )
-    : String(titleElement);
-
+export function Header({ logo, title, children }: HeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
@@ -24,7 +17,7 @@ export function Header({ logo, children }: HeaderProps) {
           </div>
           <h1 className={styles.logoText}>{title}</h1>
         </div>
-        {navElement}
+        {children}
       </div>
     </header>
   );
