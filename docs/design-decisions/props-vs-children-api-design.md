@@ -6,17 +6,17 @@ Understanding when to use props versus children in React components is fundament
 
 ## 🚨 Quick reference
 
-**Use props for:**
-- Simple/primitive data (strings, numbers, booleans)
-- Structured configuration data
-- Type-safe, explicit APIs
-- Data that doesn't need markup
+### When to use props ✅
+- **Simple/primitive data** (strings, numbers, booleans)
+- **Essential configuration** the component needs to function
+- **Type-safe, explicit APIs** with predictable structure
+- **Data that doesn't need markup** or formatting
 
-**Use children for:**
-- Content that needs markup or styling
-- Compositional, flexible content
-- JSX-like natural nesting patterns
-- Content that varies significantly in structure
+### When to use children ✅
+- **Content that needs markup** or rich formatting
+- **Compositional, flexible content** that varies in structure
+- **JSX-like natural nesting** patterns
+- **Multiple items** with variable quantity or types
 
 ## When to use props ✅
 
