@@ -1,0 +1,27 @@
+.infoBox {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e9ecef;
+    margin: 1rem 0;
+}
+
+.syntaxText {
+    margin: 0 0 0.5rem 0;
+    font-family: var(--font-mono, 'Courier New', monospace);
+    font-size: 0.9rem;
+}
+
+.descriptionText {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
+.code {
+    background-color: rgba(175, 184, 193, 0.2);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-family: var(--font-mono, 'Courier New', monospace);
+    font-size: 0.875em;
+}
