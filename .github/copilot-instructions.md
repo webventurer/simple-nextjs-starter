@@ -5,7 +5,7 @@
 When users type slash commands, respond with the following workflows:
 
 ### `/codefu`
-**CRITICAL**: Read and follow EVERY step in `docs/check-me.md`
+**CRITICAL**: Read and follow EVERY step in `docs/check-me.md`. After each step simply give a brief 1-2 line confirmation you have completed it and do not go into any detail.
 
 Please read docs/check-me.md first and follow all the AI assistant instructions in my documentation. Once you have read "check-me.md" respond: "I know codefu!" and continue following these instructions.
 
