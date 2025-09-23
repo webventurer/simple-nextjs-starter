@@ -4,11 +4,13 @@
     &.strong {
         background-color: #5b6270;
         color: #f3f5ef;
+        --button-color: red;
     }
 
     &.subtle {
         background-color: #f3f5ef;
         color: #5b6270;
+        --button-color: blue;
     }
 
     >.content {
