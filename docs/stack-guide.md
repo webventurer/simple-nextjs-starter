@@ -4,13 +4,89 @@ Note: A copy of this stack guide is also in `code-fu`. Update here and copy acro
 
 > **AI Assistant Note**: When Next.js development, React components, SCSS styling, or CSS Modules are discussed, always reference this stack guide first and acknowledge consulting it before providing guidance on the Next.js technology stack.
 
+## Technology Stack Overview
+
+### Core Stack
+- **Next.js 15.5.3** - App Router, routing patterns, and framework foundation
+- **React 19.1.0** - Component architecture with modern React features
+- **TypeScript 5.x** - Type safety, interfaces, and compile-time error checking
+- **CSS Modules** - Scoped styling with automatic class name hashing
+- **SCSS (Sass)** - Enhanced CSS with variables, nesting, and mixins
+
+### Content & Markdown
+- **MDX Integration** - React components in Markdown content
+- **@mdx-js/react & @mdx-js/loader** - MDX processing and component integration
+- **remark-gfm** - GitHub Flavored Markdown support
+
+### Development Tools
+- **Biome 2.2.0** - Fast linting and formatting (`biome check`, `biome format --write`)
+- **Turbopack** - Next.js build optimization (`next dev --turbopack`, `next build --turbopack`)
+- **TypeScript Compiler** - Type checking (`tsc --noEmit`)
+- **Pre-commit hooks** - Automated type checking before commits
+
+### Utilities & Libraries
+- **clsx** - Dynamic CSS class name construction
+- **Lucide React** - Icon library for React components
+
+### Package Management
+- **pnpm** - Fast, efficient package management with workspace support
+
+---
+
+### Lucide React - Icon Library 🎨
+
+**Lucide React** is a modern **icon library** specifically designed for React applications, providing beautiful, customizable SVG icons.
+
+#### What it is:
+- **Modern icon library** - A collection of 1000+ beautiful, customizable SVG icons
+- **React-optimized** - Specifically designed for React/Next.js applications  
+- **Tree-shakeable** - Import only the icons you use (reduces bundle size)
+- **TypeScript support** - Fully typed for TypeScript projects
+- **Highly customizable** - Size, color, stroke width, and styling control
+
+#### Key Features:
+- **1000+ icons** - Comprehensive collection covering most use cases
+- **Consistent design** - All icons follow the same design system
+- **Lightweight** - Optimized SVG icons with minimal bundle impact
+- **Accessibility** - Built-in accessibility features
+- **No dependencies** - Pure React implementation
+
+#### Usage Example:
+```tsx
+import { Home, User, Search, Menu, ChevronRight } from "lucide-react";
+
+function Navigation() {
+  return (
+    <nav>
+      <Home size={24} />
+      <User size={20} color="blue" />
+      <Search strokeWidth={1.5} />
+      <Menu className="menu-icon" />
+      <ChevronRight size={16} />
+    </nav>
+  );
+}
+```
+
+#### Why it's popular:
+- **Better than Font Icons** - SVGs are more performant and accessible
+- **Tree-shaking** - Only includes icons you actually use
+- **Consistent styling** - All icons work together visually
+- **Easy customization** - Props for size, color, stroke, etc.
+- **Framework agnostic** - Available for React, Vue, Angular, vanilla JS
+
+#### Status in this project:
+Currently **installed but not used** in the `simple-nextjs-starter` codebase. Available for future icon needs.
+
+#### Common alternatives:
+- **Heroicons** - Similar icon library from Tailwind team
+- **React Icons** - Collection of popular icon libraries
+- **Feather Icons** - Minimalist icon set (Lucide is actually a fork of Feather)
+
+---
+
 This comprehensive guide covers development standards and best practices for the complete Next.js technology stack, including React components, SCSS styling, CSS Modules, and frontend architecture patterns.
 
-**What this guide covers**:
-- **Next.js framework** → App structure and routing patterns
-- **React components** → Component architecture and formatting standards
-- **SCSS & CSS Modules** → Styling methodology and organization
-- **Frontend architecture** → Clean, maintainable patterns for scalable applications
 
 ## Core principles
 
