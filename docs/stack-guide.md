@@ -27,6 +27,7 @@ Note: A copy of this stack guide is also in `code-fu`. Update here and copy acro
 ### Utilities & Libraries
 - **clsx** - Dynamic CSS class name construction
 - **Lucide React** - Icon library for React components
+- **Next.js Fonts** - Optimized font loading with `next/font` (Inter, Nunito, Lato)
 
 ### Package Management
 - **pnpm** - Fast, efficient package management with workspace support
@@ -82,6 +83,174 @@ Currently **installed but not used** in the `simple-nextjs-starter` codebase. Av
 - **Heroicons** - Similar icon library from Tailwind team
 - **React Icons** - Collection of popular icon libraries
 - **Feather Icons** - Minimalist icon set (Lucide is actually a fork of Feather)
+
+---
+
+### Next.js Fonts - Typography Optimization 📝
+
+**Next.js Fonts** (`next/font`) is Vercel's built-in font optimization system that automatically optimizes web fonts for better performance and user experience.
+
+#### What it is:
+- **Built-in optimization** - Automatic font loading, preloading, and layout shift prevention
+- **Google Fonts integration** - Direct access to Google Fonts library with zero runtime JavaScript
+- **Local font support** - Self-hosted fonts with automatic optimization
+- **CSS Variables** - Type-safe font variables for consistent typography
+- **Performance optimized** - Zero layout shift and faster loading
+
+#### Key Features:
+- **Zero layout shift** - Fonts are preloaded to prevent content jumping
+- **Privacy-friendly** - Google Fonts served from same origin (no external requests)
+- **Automatic optimization** - Font files are optimized and subset automatically
+- **CSS custom properties** - Clean integration with CSS variables
+- **TypeScript support** - Full type safety for font configurations
+
+#### Current Implementation:
+```tsx
+// src/app/layout.tsx
+import { Inter as FontSans, Lato, Nunito } from "next/font/google";
+
+const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito",
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  variable: "--font-lato",
+  weight: "400",
+});
+
+export default function RootLayout({ children }) {
+  return (
+    <html className={cn(fontSans.variable, nunito.variable, lato.variable)}>
+      <body>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+#### Usage in CSS:
+```scss
+// Use the CSS variables in your styles
+.heading {
+  font-family: var(--font-sans); // Inter
+}
+
+.body-text {
+  font-family: var(--font-nunito); // Nunito
+}
+
+.accent-text {
+  font-family: var(--font-lato); // Lato
+}
+```
+
+#### Benefits over traditional font loading:
+- **No flash of invisible text (FOIT)** - Fonts load smoothly
+- **No flash of unstyled text (FOUT)** - Consistent rendering
+- **Better Core Web Vitals** - Improved Cumulative Layout Shift scores
+- **Reduced requests** - Fonts served from same domain
+- **Automatic subsetting** - Only characters you need are loaded
+
+#### Font Options Available:
+- **Google Fonts** - Entire Google Fonts library (`next/font/google`)
+- **Local Fonts** - Self-hosted fonts (`next/font/local`)
+- **Variable fonts** - Support for variable font formats
+- **Font Display** - Control font-display CSS property
+- **Preload** - Automatic font preloading for critical fonts
+
+#### Alternative approaches:
+- **Traditional `@font-face`** - Manual font loading (not recommended)
+- **Google Fonts CDN** - External requests with layout shift issues
+- **Font loading libraries** - Third-party solutions (unnecessary with Next.js)
+
+---
+
+### Alternative Styling Solutions (Optional) ⚡
+
+While this project uses **CSS Modules + SCSS** for styling, developers may consider these popular alternatives for different project requirements.
+
+#### Tailwind CSS
+**Tailwind CSS** is a utility-first CSS framework that provides low-level utility classes for rapid UI development.
+
+**What it is:**
+- **Utility-first** - Compose designs using utility classes directly in HTML/JSX
+- **Highly customizable** - Extensive configuration and theme customization
+- **Built-in design system** - Consistent spacing, colors, and typography scales
+- **Responsive design** - Mobile-first responsive utilities
+- **Component-friendly** - Works well with React component libraries
+
+**Example usage:**
+```jsx
+<div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow">
+  <h2 className="text-2xl font-bold text-gray-900 mb-4">Card Title</h2>
+  <p className="text-gray-600 leading-relaxed">Card content with utility classes</p>
+</div>
+```
+
+**Pros:**
+- **Rapid prototyping** - Very fast for building UIs
+- **Consistent design** - Built-in design system prevents inconsistencies
+- **Small bundle size** - Purges unused styles in production
+- **Great developer experience** - Excellent autocomplete and tooling
+
+**Cons (why we chose CSS Modules instead):**
+- **Violates separation of concerns** - Mixes design with content/markup
+- **Verbose markup** - Long className strings can become unwieldy
+- **Learning curve** - Requires memorizing utility class names
+- **Harder to maintain** - Design changes require touching markup
+
+#### shadcn/ui
+**shadcn/ui** is a collection of copy-and-paste React components built with Radix UI primitives and styled with Tailwind CSS.
+
+**What it is:**
+- **Component collection** - Pre-built, accessible React components
+- **Copy-and-paste approach** - Components are copied into your project, not installed as dependencies
+- **Radix UI primitives** - Built on top of accessible, unstyled component primitives
+- **Tailwind styling** - Styled with Tailwind CSS utility classes
+- **Customizable** - Full control since components live in your codebase
+
+**Example usage:**
+```jsx
+// After copying Button component from shadcn/ui
+import { Button } from "@/components/ui/button"
+
+<Button variant="default" size="lg">
+  Click me
+</Button>
+```
+
+**Pros:**
+- **High-quality components** - Well-designed, accessible components
+- **No vendor lock-in** - Components live in your codebase
+- **Radix UI foundation** - Excellent accessibility and behavior
+- **Customizable** - Easy to modify since you own the code
+
+**Cons (why we chose CSS Modules instead):**
+- **Requires Tailwind** - Tied to Tailwind CSS ecosystem
+- **Component bloat** - Large component files in your codebase
+- **Design system dependency** - Less control over design tokens
+- **Opinionated styling** - Harder to implement custom design systems
+
+#### When to consider alternatives:
+- **Rapid prototyping** - Tailwind excels for quick mockups and MVPs
+- **Design system adoption** - If your team already uses Tailwind design tokens
+- **Component library need** - shadcn/ui provides high-quality accessible components
+- **Small projects** - Utility-first approach can be faster for simple UIs
+
+#### Why this project uses CSS Modules + SCSS:
+- **Separation of concerns** - Clean separation between content and styling
+- **Maintainable** - Easier to maintain and modify styles over time
+- **Namespace isolation** - Automatic scoping prevents style conflicts
+- **Flexible** - Not tied to any specific design system or framework
+- **Performance** - Optimal CSS bundle sizes with tree-shaking
 
 ---
 
