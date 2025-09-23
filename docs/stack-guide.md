@@ -812,6 +812,17 @@ These component libraries work with their own styling systems and don't require 
 - **Developer experience** - Great documentation and TypeScript support
 - **CSS-in-JS styling** - Complete styling system built-in, no Tailwind required
 
+Example Chakra UI usage:
+```jsx
+import { Box, Button, Text } from '@chakra-ui/react'
+
+<Box bg="white" p={6} rounded="lg" shadow="md">
+  <Text fontSize="2xl" fontWeight="bold" mb={4}>Card Title</Text>
+  <Text color="gray.600">Card content with Chakra UI components</Text>
+  <Button colorScheme="blue" mt={4}>Action Button</Button>
+</Box>
+```
+
 **ReactComponents**
 - **Free and open-source** - Curated collection of React components
 - **Wide variety** - Buttons, forms, complex layouts, and more
@@ -826,18 +837,11 @@ These component libraries work with their own styling systems and don't require 
 - **Modern design** - Contemporary UI patterns and components
 - **Framework agnostic** - Not tied to any specific CSS framework
 
-Example Chakra UI usage:
-```jsx
-import { Box, Button, Text } from '@chakra-ui/react'
+### Example Components
 
-<Box bg="white" p={6} rounded="lg" shadow="md">
-  <Text fontSize="2xl" fontWeight="bold" mb={4}>Card Title</Text>
-  <Text color="gray.600">Card content with Chakra UI components</Text>
-  <Button colorScheme="blue" mt={4}>Action Button</Button>
-</Box>
-```
+Specific high-quality React components that work well with any styling approach:
 
-**Tailwind CSS Based Component Libraries**
+**ka-table**
 
 These component libraries require Tailwind CSS to function properly:
 
@@ -888,6 +892,26 @@ These component libraries require Tailwind CSS to function properly:
 - **Simple and minimal** - Clean, modern design approach
 - **Copy-paste workflow** - Easy integration with simple copy-paste
 - **Tailwind-based** - Requires Tailwind CSS for styling
+
+### Example Components
+
+Specific high-quality React components that work well with any styling approach:
+
+**ka-table**
+- **Data table component** - Feature-rich React table with sorting, filtering, and editing
+- **Highly customizable** - Extensive customization options for styling and behavior
+- **Performance focused** - Optimized for large datasets with virtualization
+- **TypeScript support** - Full TypeScript definitions and type safety
+- **Independent styling** - Self-contained styling system, no external CSS framework required
+- **Website**: https://komarovalexander.github.io/ka-table/#/overview
+
+**Recharts**
+- **Data visualization library** - Composable charting library built on React components
+- **D3.js powered** - Built on D3 submodules for powerful data visualization
+- **Responsive design** - Charts automatically adapt to container dimensions
+- **Declarative API** - Simple, component-based approach to building charts
+- **No external dependencies** - Self-contained with no CSS framework requirements
+- **Website**: https://recharts.org/en-US/storybook
 
 ### React Ecosystem Resources
 
