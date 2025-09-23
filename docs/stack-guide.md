@@ -899,4 +899,12 @@ These component libraries require Tailwind CSS to function properly:
   - Development tools and extensions
   - Learning resources and tutorials
 
-*This resource is invaluable for discovering new React libraries, staying updated with ecosystem trends, and finding solutions for specific development needs.*
+- **[Awesome React Components](https://github.com/brillout/awesome-react-components)** - A curated list of React components and libraries. This extensive collection focuses specifically on:
+  - UI components and widgets
+  - Form components and validation
+  - Data visualization and charts
+  - Layout and navigation components
+  - Animation and interaction libraries
+  - Specialized component categories
+
+*These resources are invaluable for discovering new React libraries, staying updated with ecosystem trends, and finding solutions for specific development needs.*
