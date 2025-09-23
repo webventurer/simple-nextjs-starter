@@ -20,17 +20,15 @@ export type ButtonType = {
   text?: string;
 };
 
-export type ButtonComponentType =
-  React.ComponentProps<typeof Link> &
-  ButtonType &
-  { children: React.ReactNode };
+export type ButtonComponentType = React.ComponentProps<typeof Link> &
+  ButtonType & { children: React.ReactNode };
 
-export default function Button({
+export function Button({
   className,
   variant,
   size,
   href,
-  children
+  children,
 }: ButtonComponentType) {
   return (
     <Link
