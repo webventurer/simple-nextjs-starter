@@ -14,12 +14,12 @@ export function FeaturesGrid({ children, variant }: FeaturesGridProps) {
   const classes = clsx(styles.featuresGrid, variant && styles[variant]);
 
   return (
-    <section className={classes}>
+    <div className={classes}>
       {cards.map((cardChildren: ReactNode, idx: number) => (
         <FeatureCard key={`feature-${Date.now()}-${idx}`} variant={variant}>
           {cardChildren}
         </FeatureCard>
       ))}
-    </section>
+    </div>
   );
 }
