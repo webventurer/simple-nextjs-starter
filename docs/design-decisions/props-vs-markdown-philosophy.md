@@ -48,7 +48,7 @@ This philosophy guides how we design component APIs that are both powerful for d
 ]} />
 
 // ✅ Better - simple props + flexible children
-<Header title="Simple Starter">
+<Header logo="S" title="Simple Starter">
   <Nav>
     [Home](/home)
     [About](/about)
@@ -153,8 +153,8 @@ This philosophy guides how we design component APIs that are both powerful for d
 ### Implementation
 ```jsx
 // ✅ Perfect balance
-<Header title="Simple Starter">  {/* Simple prop */}
-  <Nav>                          {/* Complex children */}
+<Header logo="S" title="Simple Starter">
+  <Nav>
     [Home](/home)
     [About](/about)
     [Contact](/contact)
@@ -364,7 +364,7 @@ The same component handles both cases naturally!
 ### 3. Natural mental model
 When content creators see:
 ```mdx
-<Header title="My Site">
+<Header logo="S" title="My Site">
   <Nav>
     [Home](/home)
     [About](/about)
