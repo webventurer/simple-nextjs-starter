@@ -1,5 +1,11 @@
+import path from "node:path";
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
+
+const remarkButtonsPath = path.join(
+  process.cwd(),
+  "tools/remark/remark-parse-buttons.mjs",
+);
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
@@ -7,7 +13,7 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: ["remark-gfm"],
+    remarkPlugins: [remarkButtonsPath, "remark-gfm"],
     rehypePlugins: [],
   },
 });
