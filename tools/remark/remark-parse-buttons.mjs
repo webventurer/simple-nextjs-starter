@@ -1,49 +1,84 @@
 import { visit } from 'unist-util-visit';
 
-export default function remarkButton() {
+export default function transformBracketLinksToButtons() {
   return (tree) => {
     visit(tree, 'link', (node, index, parent) => {
-      if (!node.children || !node.children[0] || node.children[0].type !== 'text') return;
-      
-      const linkText = node.children[0].value;
-      const match = linkText.match(/^\[(.+?)(?:\|(.+?))?\]$/);
-      
-      if (!match) return;
-      
-      const buttonText = match[1].trim();
-      const propsString = match[2];
-      const href = node.url;
-      
-      const props = {};
-      if (propsString) {
-        propsString.split(',').forEach((pair) => {
-          const [key, value] = pair.split('=');
-          if (key && value) props[key.trim()] = value.trim();
-        });
-      }
+      if (!linkNodeHasTextContent(node)) return;
 
-      const buttonNode = {
-        type: 'mdxJsxTextElement',
-        name: 'Button',
-        attributes: [
-          {
-            type: 'mdxJsxAttribute',
-            name: 'href',
-            value: href
-          },
-          ...Object.entries(props).map(([key, value]) => ({
-            type: 'mdxJsxAttribute',
-            name: key,
-            value: value
-          }))
-        ],
-        children: [{
-          type: 'text',
-          value: buttonText
-        }]
-      };
-      
-      parent.children[index] = buttonNode;
+      const buttonSyntax = extractButtonSyntaxFromDoubleBrackets(node.children[0].value);
+      if (!buttonSyntax) return;
+
+      const buttonElement = createMdxButtonElement(buttonSyntax, node.url);
+      parent.children[index] = buttonElement;
     });
   };
 }
+
+function linkNodeHasTextContent(node) {
+  return node.children &&
+         node.children[0] &&
+         node.children[0].type === 'text';
+}
+
+function extractButtonSyntaxFromDoubleBrackets(linkText) {
+  const bracketMatch = linkText.match(/^\[(.+?)(?:\|(.+?))?\]$/);
+
+  if (!bracketMatch) {
+    return null;
+  }
+
+  const buttonText = bracketMatch[1].trim();
+  const propsString = bracketMatch[2];
+
+  return {
+    text: buttonText,
+    props: parseCommaDelimitedProps(propsString)
+  };
+}
+
+function parseCommaDelimitedProps(propsString) {
+  const props = {};
+
+  if (!propsString) {
+    return props;
+  }
+
+  propsString.split(',').forEach((pair) => {
+    const [key, value] = pair.split('=');
+    if (key && value) {
+      props[key.trim()] = value.trim();
+    }
+  });
+
+  return props;
+}
+
+function createMdxButtonElement(buttonSyntax, href) {
+  const attributes = [
+    {
+      type: 'mdxJsxAttribute',
+      name: 'href',
+      value: href
+    }
+  ];
+
+  Object.entries(buttonSyntax.props).forEach(([key, value]) => {
+    attributes.push({
+      type: 'mdxJsxAttribute',
+      name: key,
+      value: value
+    });
+  });
+
+  return {
+    type: 'mdxJsxTextElement',
+    name: 'Button',
+    attributes: attributes,
+    children: [{
+      type: 'text',
+      value: buttonSyntax.text
+    }]
+  };
+}
+
+
