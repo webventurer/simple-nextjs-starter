@@ -40,7 +40,7 @@ Note: A copy of this stack guide is also in `code-fu`. Update here and copy acro
 
 #### What it is:
 - **Modern icon library** - A collection of 1000+ beautiful, customizable SVG icons
-- **React-optimized** - Specifically designed for React/Next.js applications  
+- **React-optimized** - Specifically designed for React/Next.js applications
 - **Tree-shakeable** - Import only the icons you use (reduces bundle size)
 - **TypeScript support** - Fully typed for TypeScript projects
 - **Highly customizable** - Size, color, stroke width, and styling control
@@ -787,3 +787,116 @@ This technology stack (React + TypeScript + CSS Modules + SCSS + Markdown) provi
 > The goal is creating a visual language with its own encapsulation and programming ability, where all display code gets shorter and is cleanly separated from content.
 
 Each React component has its namespace with its own styling. **Namespaces & encapsulation for the win!**
+
+---
+
+## Appendix: Additional Resources 📚
+
+### Component Libraries
+
+**CSS Modules + SCSS Based / Independent Styling (Non-Tailwind)**
+
+These component libraries work with their own styling systems and don't require Tailwind CSS:
+
+**21st.dev**
+- **Modern component library** - Contemporary React components with clean design
+- **TypeScript-first** - Built with TypeScript for excellent developer experience
+- **Customizable** - Flexible theming and styling options
+- **Performance-focused** - Optimized for modern React applications
+- **Independent styling** - Uses its own styling system, not Tailwind-dependent
+
+**Chakra UI**
+- **Simple and modular** - Build accessible React apps with speed
+- **Themeable** - Comprehensive theming system with design tokens
+- **Accessibility-first** - WAI-ARIA compliant components out of the box
+- **Developer experience** - Great documentation and TypeScript support
+- **CSS-in-JS styling** - Complete styling system built-in, no Tailwind required
+
+**ReactComponents**
+- **Free and open-source** - Curated collection of React components
+- **Wide variety** - Buttons, forms, complex layouts, and more
+- **Well-documented** - Comprehensive documentation and examples
+- **Easy integration** - Designed for quick project integration
+- **Flexible styling** - Works with any CSS framework or custom styles
+
+**Park UI**
+- **Multi-framework support** - Works with React, Vue, and Solid
+- **Multiple styling options** - Supports Tailwind, Panda CSS, or custom styling
+- **Versatile integration** - Great for projects spanning multiple frameworks
+- **Modern design** - Contemporary UI patterns and components
+- **Framework agnostic** - Not tied to any specific CSS framework
+
+Example Chakra UI usage:
+```jsx
+import { Box, Button, Text } from '@chakra-ui/react'
+
+<Box bg="white" p={6} rounded="lg" shadow="md">
+  <Text fontSize="2xl" fontWeight="bold" mb={4}>Card Title</Text>
+  <Text color="gray.600">Card content with Chakra UI components</Text>
+  <Button colorScheme="blue" mt={4}>Action Button</Button>
+</Box>
+```
+
+**Tailwind CSS Based Component Libraries**
+
+These component libraries require Tailwind CSS to function properly:
+
+**NextUI**
+- **High-performance React UI library** - Built specifically on Tailwind CSS
+- **Clean designs** - Modern, consistent component designs
+- **Seamless integration** - Works perfectly with Tailwind's utility classes
+- **Performance focused** - Optimized for modern React applications
+
+**Preline UI**
+- **Largest free Tailwind library** - Over 60 components and 170 sections
+- **Dark mode support** - Built-in dark mode compatibility
+- **Highly responsive** - Components work across all device sizes
+- **Complex layouts** - Supports both simple and advanced UI patterns
+
+**TailGrids**
+- **Comprehensive component collection** - 600+ components across 80+ categories
+- **Copy-paste integration** - Simple integration with copy-paste workflow
+- **React focused** - Specifically designed for React applications
+- **Quick workflow** - Streamlines development with ready-to-use components
+
+**HyperUI**
+- **Ready-to-use components** - HTML and CSS components for quick integration
+- **Versatile applications** - Supports app UI, e-commerce, and marketing sites
+- **Quick customization** - Easy to modify and adapt to your needs
+- **Tailwind-based** - Built with Tailwind CSS utility classes
+
+**Sailboat UI**
+- **Modern Tailwind library** - 150+ open-source components
+- **Alpine.js integration** - Interactive elements with Alpine.js
+- **Flexible theming** - Comprehensive theming and customization options
+- **Component variety** - Buttons, accordions, forms, and complex layouts
+
+**Float UI**
+- **Comprehensive library** - Full-featured Tailwind CSS component collection
+- **Responsive design** - All components are fully responsive
+- **Customizable** - Easy to modify and extend components
+- **Streamlined workflow** - Designed to speed up development process
+
+**Tremor**
+- **Data visualization focused** - Specialized for dashboards and analytics
+- **Chart components** - Area charts, bar charts, line charts, and more
+- **Data-heavy applications** - Perfect for business intelligence and reporting
+- **Tailwind integration** - Built on Tailwind CSS foundation
+
+**Flowbite React**
+- **Open-source library** - 100+ free components across 32+ categories
+- **Simple and minimal** - Clean, modern design approach
+- **Copy-paste workflow** - Easy integration with simple copy-paste
+- **Tailwind-based** - Requires Tailwind CSS for styling
+
+### React Ecosystem Resources
+
+- **[Awesome React](https://github.com/enaqx/awesome-react)** - A comprehensive collection of awesome things regarding the React ecosystem. This curated list includes:
+  - React tools and libraries
+  - Component libraries and UI frameworks
+  - State management solutions
+  - Testing utilities
+  - Development tools and extensions
+  - Learning resources and tutorials
+
+*This resource is invaluable for discovering new React libraries, staying updated with ecosystem trends, and finding solutions for specific development needs.*
