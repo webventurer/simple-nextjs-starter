@@ -1,9 +1,9 @@
 import type { MDXComponents } from "mdx/types";
 import Button from "@/components/Button/Button";
-import { FeatureCard } from "@/components/FeatureCard";
-import { FeaturesGrid } from "@/components/FeaturesGrid";
+import { FeatureCard } from "@/components/FeatureCard/FeatureCard";
+import { FeaturesGrid } from "@/components/FeaturesGrid/FeaturesGrid";
 import { Actions, Header, Nav } from "@/components/Header/Header";
-import { Section } from "@/components/Section";
+import Section from "@/components/Section/Section";
 
 const components: MDXComponents = {
   Button,

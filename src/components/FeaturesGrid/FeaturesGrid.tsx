@@ -1,7 +1,10 @@
 import clsx from "clsx";
 import type { ReactNode } from "react";
 import { groupBySequence } from "@/components/utils";
-import { FeatureCard, type FeatureCardVariantType } from "../FeatureCard";
+import {
+  FeatureCard,
+  type FeatureCardVariantType,
+} from "../FeatureCard/FeatureCard";
 import styles from "./FeaturesGrid.module.scss";
 
 interface FeaturesGridProps {
