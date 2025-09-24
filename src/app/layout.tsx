@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter as FontSans, Lato, Nunito } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-import "./globals.css";
-import "../styles/layout.css";
-import "../styles/typography.css";
+import "@/styles/globals.scss";
+
+import styles from "./layout.module.scss";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -46,7 +46,7 @@ export default function RootLayout({
       lang="en"
       className={cn(fontSans.variable, nunito.variable, lato.variable)}
     >
-      <body>
+      <body className={styles.layout}>
         <SiteHeader />
         <main>{children}</main>
       </body>
