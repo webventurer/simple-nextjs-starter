@@ -1,26 +1,10 @@
 import type { Metadata } from "next";
-import { Inter as FontSans, Lato, Nunito } from "next/font/google";
 import { cn } from "@/lib/utils";
+import googleFonts from "./googleFonts";
 
 import "@/styles/globals.scss";
 
 import styles from "./layout.module.scss";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-});
-
-const lato = Lato({
-  subsets: ["latin"],
-  variable: "--font-lato",
-  weight: "400",
-});
 
 export const metadata: Metadata = {
   title: "Simple Next.js Starter",
@@ -42,11 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn(fontSans.variable, nunito.variable, lato.variable)}
-    >
-      <body className={styles.layout}>
+    <html lang="en" className={cn(googleFonts(), styles.layout)}>
+      <body>
         <SiteHeader />
         <main>{children}</main>
       </body>

@@ -1,5 +1,12 @@
 // Define base element colors based on defined colors
 :root {
-  --text-color-default: var(--color-ink-black);
-  --bg-color-default: var(--color-off-white);
+
+    // Colors
+    --text-color-default: var(--color-ink-black);
+    --bg-color-default: var(--color-off-white);
+
+    // Font faces
+    --font-sans: var(--font-inter);
+    --font-mono: var(--font-ubuntu-mono);
+
 }
