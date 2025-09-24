@@ -24,17 +24,21 @@ $radius-lg: 1rem;
 .headerContent {
     max-width: 1280px;
     margin: 0 auto;
-    padding: $spacing-xl 1rem; // Combined padding
+    padding: $spacing-xl 1rem; // Restore basic padding for mobile
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (min-width: 1280px) {
+        padding-left: 0; // Remove left padding on large screens
+        padding-right: 0; // Remove right padding on large screens
+    }
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: $spacing-md;
-    margin-left: -1rem; // Align with content
 }
 
 .logoIcon {
@@ -66,12 +70,13 @@ $radius-lg: 1rem;
 
     @media (min-width: 768px) {
         display: flex;
-        gap: $spacing-xxl;
+        gap: 2.5rem; // Increased gap between nav items
         align-items: center;
+        padding-right: 1rem; // Extra space to the right of Links
 
         // Force proper spacing between MDX links
         >* {
-            margin-right: $spacing-xxl;
+            margin-right: 2.5rem; // Match the gap
 
             &:last-child {
                 margin-right: 0;

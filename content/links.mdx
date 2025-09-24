@@ -1,0 +1,32 @@
+import styles from './links.module.scss';
+
+<Section>
+
+  # Button transformation demo
+
+  This page demonstrates button link transformations using double bracket syntax.
+
+  [[Return to the home page|size=medium, variant=outlined]](/)
+  [[Another button|size=medium]](/)
+
+
+  ## Button examples
+
+  Simple button:
+  [[Get Started]](https://example.com)
+
+  Button with variant:
+  [[Sign Up|variant=outlined]](https://signup.com)
+
+  Button with multiple props:
+  [[Buy Now|variant=filled,size=large]](https://buy.com)
+
+  ## How it works
+
+  The transformation looks for double bracket syntax:
+
+  **Syntax:** `` `[[text|props]](url)` `` → `<Button>` component
+
+  Props use the format: `key=value,key2=value2`
+
+</Section>
