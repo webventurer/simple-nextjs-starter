@@ -1,0 +1,16 @@
+// Styles specific to this layout can go here.
+// More useful if you have a different layout on (for example) blog pages
+
+.app {
+
+  --container-width: 1280px;
+  --padding-x: 2rem;
+
+  body {
+
+    background-color: var(--bg-color-default);
+    color: var(--text-color-default);
+
+  }
+
+}

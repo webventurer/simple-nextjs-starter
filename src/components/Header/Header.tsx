@@ -1,26 +1,21 @@
 import type React from "react";
-import type { ReactElement } from "react";
 import styles from "./Header.module.scss";
 
 interface HeaderProps {
   logo: string;
   title: string;
-  children: ReactElement<typeof Nav>;
+  children: React.ReactNode;
 }
 
 export function Header({ logo, title, children }: HeaderProps) {
-  if (children.type !== Nav) {
-    throw new Error("<Header> only accepts a single <Nav> as child");
-  }
-
   return (
     <header className={styles.header}>
-      <div className={styles.headerContent}>
+      <div className={styles.container}>
         <div className={styles.logo}>
-          <div className={styles.logoIcon}>
-            <span className={styles.logoText}>{logo}</span>
-          </div>
-          <h1 className={styles.logoText}>{title}</h1>
+          <a href="/" className={styles.logoLink}>
+            <div className={styles.logoIcon}>{logo}</div>
+            {title}
+          </a>
         </div>
         {children}
       </div>

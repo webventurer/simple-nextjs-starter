@@ -5,15 +5,19 @@ import styles from "./Section.module.scss";
 
 export interface SectionProps {
   children: React.ReactNode;
-  variant?: "default" | "strong" | "subtle";
+  variant?: "strong" | "subtle";
   className?: string;
 }
 
-export function Section({ children, variant, className }: SectionProps) {
-  const classes = clsx(styles.section, variant && styles[variant], className);
-
+export default function Section({
+  children,
+  variant,
+  className,
+}: SectionProps) {
   return (
-    <section className={classes}>
+    <section
+      className={clsx(styles.section, variant && styles[variant], className)}
+    >
       <div className={styles.content}>{children}</div>
     </section>
   );

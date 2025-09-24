@@ -1,13 +1,20 @@
 @layer theme {
+
   :root {
 
     // Colors
     --text-color-default: var(--color-ink-black);
     --bg-color-default: var(--color-off-white);
+    --button-color-default: var(--color-blue);
+    --button-text-color-default: #fff;
 
     // Font faces
     --font-sans: var(--font-inter);
     --font-mono: var(--font-ubuntu-mono);
+
+    // Nav
+    --header-bg: var(--color-purple);
+    --header-fg: #fff;
 
     // Section themes
     --section-bg-strong: var(--color-ink-black);
@@ -16,5 +23,18 @@
     --section-bg-subtle: var(--color-silver);
     --section-fg-subtle: var(--color-grey);
 
+    // Hero themes (overrides section)
+    --hero-button-strong: var(--color-red);
+    --hero-button-subtle: var(--color-green);
+
+    // CTA themes (overrides CTA)
+    --cta-button-strong: var(--color-red);
+    --cta-button-subtle: var(--color-green);
+
+    // Feature cards
+    --feature-card-bg-highlighted: var(--color-ink-black);
+    --feature-card-fg-highlighted: #fff;
+
   }
+
 }

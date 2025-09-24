@@ -1,20 +1,24 @@
 .section {
-    padding: 1rem;
 
-    &.strong {
-        background-color: #5b6270;
-        color: #f3f5ef;
-        --button-color: red;
-    }
+  padding: 2rem 0;
 
-    &.subtle {
-        background-color: #f3f5ef;
-        color: #5b6270;
-        --button-color: blue;
-    }
+  .content {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--padding-x);
 
-    >.content {
-        max-width: 1280px;
-        margin: 0 auto;
-    }
+    // No default colours needed - they inherit
+
+  }
+
+  &.strong {
+    background: var(--section-bg-strong);
+    color: var(--section-fg-strong);
+  }
+
+  &.subtle {
+    background: var(--section-bg-subtle);
+    color: var(--section-fg-subtle);
+  }
+
 }

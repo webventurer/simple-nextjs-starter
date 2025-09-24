@@ -4,7 +4,7 @@ import googleFonts from "./googleFonts";
 
 import "@/styles/globals.scss";
 
-import styles from "./layout.module.scss";
+import styles from "./app.module.scss";
 
 export const metadata: Metadata = {
   title: "Simple Next.js Starter",
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(googleFonts(), styles.layout)}>
+    <html lang="en" className={cn(googleFonts(), styles.app)}>
       <body>
         <SiteHeader />
         <main>{children}</main>

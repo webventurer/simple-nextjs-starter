@@ -8,7 +8,6 @@ const variantClass = {
 };
 
 const sizeClass = {
-  default: classes.sizeDefault,
   large: classes.large,
   small: classes.small,
 };
@@ -23,7 +22,7 @@ export type ButtonType = {
 export type ButtonComponentType = React.ComponentProps<typeof Link> &
   ButtonType & { children: React.ReactNode };
 
-export function Button({
+export default function Button({
   className,
   variant,
   size,

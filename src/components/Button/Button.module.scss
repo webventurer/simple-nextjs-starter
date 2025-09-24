@@ -1,95 +1,68 @@
 .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    font-weight: 600;
-    border-radius: 6px;
-    white-space: nowrap;
-    padding: 0.75em 1.5em;
-    font-size: 1rem;
-    background-color: var(--button-color, #3b82f6);
-    border: 2px solid var(--button-color, #3b82f6);
-    color: white !important;
-    /* Force white text on blue background */
-    cursor: pointer;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
+
+  --button-color-active: var(--button-color, var(--button-color-default));
+  --button-text-color-active: var(--button-text-color, var(--button-text-color-default));
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  border-radius: 6px;
+  white-space: nowrap;
+  padding: 0.75em 1.5em;
+  font-size: 1rem;
+  background-color: var(--button-color-active);
+  border: 2px solid var(--button-color-active);
+  color: var(--button-text-color, var(--button-text-color-default));
+  cursor: pointer;
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--button-color-active) 80%, transparent);
+    border-color: color-mix(in srgb, var(--button-color-active) 80%, transparent);
+  }
+
+  &.outlined {
+    background-color: transparent;
+    border: 2px solid var(--button-color-active);
+    color: var(--button-color-active);
 
     &:hover {
-        background-color: color-mix(in srgb, var(--button-color, #3b82f6) 80%, transparent);
-        border-color: color-mix(in srgb, var(--button-color, #3b82f6) 80%, transparent);
-        color: white !important;
-        /* Ensure white text on hover */
+      background-color: var(--button-color-active);
+      color: var(--button-text-color-active, white);
     }
+  }
 
-    &.white {
-        color: #000;
-        mix-blend-mode: screen;
-        border-color: #fff;
-        background: #fff;
+  &.small {
+    padding: 0.5em 1rem;
+    font-size: 0.875rem;
+  }
 
-        &:hover {
-            color: #fff;
-            border-color: #fff;
-            mix-blend-mode: normal;
-            background-color: transparent;
-        }
-    }
-
-    &.outlined {
-        background-color: transparent;
-        border: 2px solid var(--button-color, #3b82f6);
-        color: var(--button-color, #3b82f6) !important; /* Force blue text for outlined buttons */
-
-        &:hover {
-            background-color: var(--button-color, #3b82f6);
-            color: white !important;
-            /* Force white text when blue background on hover */
-        }
-
-        &.white {
-            color: #fff;
-            border-color: #fff;
-
-            &:hover {
-                background-color: #fff;
-                color: #000;
-                mix-blend-mode: screen;
-            }
-        }
-    }
-
-    &.small {
-        padding: 0.5em 1rem;
-        font-size: 0.875rem;
-    }
-
-    &.large {
-        padding: 1rem 2rem;
-        font-size: 1.25rem;
-    }
+  &.large {
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+  }
 
 }
 
 .buttonsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
 
-    @media (max-width: 768px) {
-        justify-content: center;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
+  .button {
+    min-width: 120px;
+
+    @media (max-width: 480px) {
+      flex: 1;
+      min-width: auto;
     }
-
-    .button {
-        min-width: 120px;
-
-        @media (max-width: 480px) {
-            flex: 1;
-            min-width: auto;
-        }
-    }
+  }
 }
