@@ -1,1 +1,1 @@
-export { Header, Nav } from "./Header";
+export { Header, Nav, Actions } from "./Header";

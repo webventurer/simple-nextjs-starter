@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 import styles from "./Header.module.scss";
 
 interface HeaderProps {
@@ -8,6 +8,8 @@ interface HeaderProps {
 }
 
 export function Header({ logo, title, children }: HeaderProps) {
+  const [navElement, actionsElement] = React.Children.toArray(children);
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -17,7 +19,8 @@ export function Header({ logo, title, children }: HeaderProps) {
             {title}
           </a>
         </div>
-        {children}
+        {navElement}
+        {actionsElement}
       </div>
     </header>
   );
@@ -25,4 +28,8 @@ export function Header({ logo, title, children }: HeaderProps) {
 
 export function Nav({ children }: { children: React.ReactNode }) {
   return <nav className={styles.nav}>{children}</nav>;
+}
+
+export function Actions({ children }: { children: React.ReactNode }) {
+  return <div className={styles.actions}>{children}</div>;
 }

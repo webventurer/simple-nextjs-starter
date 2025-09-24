@@ -99,6 +99,21 @@
     }
   }
 
+  .actions {
+    display: flex !important;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin-bottom: 16px;
 
+    // Override button theme colors for header context
+    --button-color: var(--header-fg);
+    --button-text-color: var(--header-bg);
+
+    // Simple spacing between buttons
+    a:first-child {
+      margin-right: 0.75rem;
+    }
+  }
 
 }
