@@ -1,7 +1,11 @@
-:root {
-  --color-blue: #537bff;
-  --color-red: #f30008;
-  --color-green: #6ae300;
-  --color-off-white: #f5f5f5;
-  --color-ink-black: #343043;
+@layer colors {
+  :root {
+    --color-blue: #537bff;
+    --color-red: #f30008;
+    --color-green: #6ae300;
+    --color-off-white: #f5f5f5;
+    --color-ink-black: #343043;
+    --color-grey: #49494b;
+    --color-silver: #b0b0b6;
+  }
 }

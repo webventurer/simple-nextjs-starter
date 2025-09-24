@@ -1,5 +1,5 @@
-// Define base element colors based on defined colors
-:root {
+@layer theme {
+  :root {
 
     // Colors
     --text-color-default: var(--color-ink-black);
@@ -9,4 +9,12 @@
     --font-sans: var(--font-inter);
     --font-mono: var(--font-ubuntu-mono);
 
+    // Section themes
+    --section-bg-strong: var(--color-ink-black);
+    --section-fg-strong: #fff; // Don't need var for pure white
+
+    --section-bg-subtle: var(--color-silver);
+    --section-fg-subtle: var(--color-grey);
+
+  }
 }
