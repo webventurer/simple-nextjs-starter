@@ -34,10 +34,8 @@ export default function CardsGrid({
       )}
     >
       {cards.map((cardChildren: ReactNode, idx: number) => {
-        // Use index-based key since feature cards have stable content and order
-        const stableKey = `card-${idx}`;
         return (
-          <Card key={stableKey} variant={variant} spacing={spacing}>
+          <Card key={idx} variant={variant} spacing={spacing}>
             {cardChildren}
           </Card>
         );
