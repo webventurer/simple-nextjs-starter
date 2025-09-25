@@ -1,4 +1,4 @@
-.featureCard {
+.card {
 
   padding: 2rem;
   background: var(--bg-color-default);
@@ -24,9 +24,9 @@
   }
 
   &.highlighted {
-    background: var(--feature-card-bg-highlighted);
-    color: var(--feature-card-fg-highlighted);
-    border-color: var(--feature-card-fg-highlighted);
+    background: var(--card-bg-highlighted);
+    color: var(--card-fg-highlighted);
+    border-color: var(--card-fg-highlighted);
   }
 
 }
