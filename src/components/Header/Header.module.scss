@@ -77,9 +77,7 @@
       position: relative;
       white-space: nowrap;
 
-      &:hover {
-        color: var(--header-fg);
-      }
+
 
       &:after {
         content: '';
@@ -116,4 +114,101 @@
     }
   }
 
+  // Navigation container that handles desktop/mobile states
+  .navContainer {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex: 1;
+    justify-content: center;
+
+    @media (max-width: 1024px) {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: var(--header-bg);
+      flex-direction: column;
+      padding: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+  }
+
+  .navContainerClosed {
+    @media (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  .navContainerOpen {
+    @media (max-width: 1024px) {
+      display: flex;
+    }
+  }
+
+  // Hamburger button - hidden on desktop
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--header-fg);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+
+    &:hover {
+      background: var(--header-fg-20);
+    }
+  }
+
+  // Consolidated mobile styles
+  @media (max-width: 1024px) {
+    .nav {
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      text-align: center;
+
+      a {
+        display: block;
+        padding: 0.75rem;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background: var(--header-fg-20);
+        }
+      }
+    }
+
+    .actions {
+      flex-direction: column !important;
+      white-space: normal !important;
+      gap: 0;
+      width: 100%;
+      margin-bottom: 0;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--header-fg-20);
+
+      a {
+        width: 100%;
+        text-align: center;
+        margin-right: 0 !important;
+        margin-bottom: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .hamburger {
+      display: block;
+    }
+  }
 }
