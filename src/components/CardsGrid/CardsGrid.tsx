@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 import Card from "../Card/Card";
 import { groupBySequence } from "../utils";
@@ -26,7 +26,7 @@ export default function CardsGrid({
 
   return (
     <div
-      className={clsx(
+      className={cn(
         styles.cardsGrid, // Base class contains default styling
         variant && styles[variant], // Only apply variant if provided
         spacing && styles[spacing], // Only apply spacing if provided

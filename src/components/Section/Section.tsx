@@ -1,5 +1,6 @@
-import clsx from "clsx";
+// External libraries
 import type React from "react";
+import { cn } from "@/lib/utils";
 
 import styles from "./Section.module.scss";
 
@@ -16,7 +17,11 @@ export default function Section({
 }: SectionProps) {
   return (
     <section
-      className={clsx(styles.section, variant && styles[variant], className)}
+      className={cn(
+        styles.section, // Base class contains default styling
+        variant && styles[variant], // Only apply variant if provided
+        className,
+      )}
     >
       <div className={styles.content}>{children}</div>
     </section>

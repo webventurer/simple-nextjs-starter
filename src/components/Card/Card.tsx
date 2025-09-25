@@ -1,7 +1,6 @@
-"use client";
-
-import clsx from "clsx";
+// External libraries
 import type React from "react";
+import { cn } from "@/lib/utils";
 
 // Styles
 import styles from "./Card.module.scss";
@@ -25,7 +24,7 @@ export default function Card({
 }: CardProps) {
   return (
     <article
-      className={clsx(
+      className={cn(
         styles.card, // Base class contains default styling
         spacing && styles[spacing], // Only apply spacing if provided
         variant && styles[variant], // Only apply variant if provided

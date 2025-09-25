@@ -278,7 +278,7 @@ React Component (`Button.tsx`):
 
 ```tsx
 import styles from "./Button.module.scss";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 interface ButtonProps {
   variant?: "primary" | "secondary";
@@ -288,7 +288,7 @@ interface ButtonProps {
 export default function Button({ variant = "primary", children }: ButtonProps) {
   return (
     <button
-      className={clsx(
+      className={cn(
         styles.button,
         variant === "secondary" && styles.secondary
       )}
@@ -349,26 +349,45 @@ export default withMDX(nextConfig);
 
 **Important:** Use string format `"remark-gfm"` not the imported function for Turbopack compatibility.
 
-### 5. Add clsx for conditional styling
+### 5. Use cn() for conditional styling
 
-```bash
-pnpm add clsx
-```
-
-clsx is a utility for conditionally joining CSS classes together. Perfect for SCSS modules:
+This repo uses a custom `cn()` utility (wrapper around clsx) for conditionally joining CSS classes. Perfect for SCSS modules:
 
 ```tsx
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import styles from "./Component.module.scss";
 
-const classes = clsx(
+const classes = cn(
   styles.base,
   variant && styles[variant],
   isActive && styles.active
 );
 ```
 
-### 6. Configure VS Code (Required for Biome)
+**Why cn() instead of clsx directly?**
+
+- **Consistency** - Single utility across the entire codebase
+- **Extensibility** - Can add custom logic (Tailwind merge, debugging, etc.) later
+- **Shorter imports** - `cn` vs `clsx` (saves characters)
+- **Future-proof** - Easy to enhance without changing component code
+
+Under the hood, `cn()` uses clsx but provides a standardized interface:
+
+```tsx
+// src/lib/utils.ts
+import { type ClassValue, clsx } from "clsx";
+
+export function cn(...inputs: ClassValue[]) {
+  return clsx(inputs);
+}
+```
+
+Install clsx dependency:
+```bash
+pnpm add clsx
+```
+
+### 6. Configure VS Code (Optional)
 
 #### Install Biome VS Code Extension
 
@@ -507,7 +526,7 @@ This starter treats styling as component-scoped with shared design tokens. Each 
 - **SCSS Modules** - Component-specific styles with preprocessing power
 - **Global styles** - Layout, typography, and reset styles
 - **CSS Custom Properties** - Design tokens and theme variables
-- **Utility helpers** - Simple layout classes when needed (using `clsx`)
+- **Utility helpers** - Simple layout classes when needed (using `cn()`)
 
 ## Troubleshooting
 
