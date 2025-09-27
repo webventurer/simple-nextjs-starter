@@ -1,5 +1,4 @@
-import { redirect } from "next/navigation";
-
-export default function Home() {
-  redirect("/home");
+export default async function Home() {
+  const { default: Page } = await import(`@/content/home.mdx`);
+  return <Page />;
 }
