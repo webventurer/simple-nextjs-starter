@@ -58,7 +58,7 @@
       "recommended": true,
       "suspicious": {
         "noUnknownAtRules": "off",
-        "noArrayIndexKey": "info"
+        "noArrayIndexKey": "off"
       }
     },
     "domains": {
