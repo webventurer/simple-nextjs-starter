@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styles from "./Header.module.scss";
 
@@ -9,6 +11,7 @@ interface HeaderProps {
 
 export function Header({ logo, title, children }: HeaderProps) {
   const [navElement, actionsElement] = React.Children.toArray(children);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
     <header className={styles.header}>
@@ -19,8 +22,22 @@ export function Header({ logo, title, children }: HeaderProps) {
             {title}
           </a>
         </div>
-        {navElement}
-        {actionsElement}
+
+        <div
+          className={`${styles.navContainer} ${isMenuOpen ? styles.navContainerOpen : styles.navContainerClosed}`}
+        >
+          {navElement}
+          {actionsElement}
+        </div>
+
+        <button
+          type="button"
+          className={styles.hamburger}
+          aria-label="Toggle menu"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          ☰
+        </button>
       </div>
     </header>
   );
