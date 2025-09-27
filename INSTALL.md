@@ -2,6 +2,18 @@
 
 A comprehensive guide to setting up this clean Next.js starter from scratch with MDX, SCSS modules, and modern tooling.
 
+## Goals of this starter
+
+This starter template follows a **minimal foundation** philosophy, prioritizing building blocks over specific implementations. Rather than providing opinionated, business-specific components like CTA sections or Hero banners that vary dramatically between projects, we focus on foundational components like Card, Section, and CardsGrid that can be composed into anything you need.
+
+The philosophy stems from recognizing that CTA components are inherently business-specific and vary per use case, while Hero sections are design-specific and change dramatically between projects. Instead of making assumptions about your goals, we provide the infrastructure and patterns you need to build quickly and consistently.
+
+**What you get** is a reusable foundation with components that work across different project types. You'll find consistent patterns for styling, imports, and structure, along with a modern development experience powered by fast tooling that requires minimal configuration. The extensible architecture makes it easy to build upon without fighting the starter's opinions.
+
+**This approach is perfect for** landing pages, marketing sites, and documentation sites where you need custom design and messaging. It's ideal for developers who want control over their component library and teams building multiple sites with consistent tooling but different designs.
+
+The result is a starter that stays truly reusable while providing all the infrastructure you need to build quickly and consistently, without the bloat of components you'll likely replace anyway.
+
 ## Quick setup
 
 If you want to clone this repository directly:
